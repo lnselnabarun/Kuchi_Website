@@ -65,16 +65,16 @@ const DashboardStatus = () => {
             <div className="p-6">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {todayStats.map((stat, index) => {
-                  const StatIcon = stat.icon;
+                  const StatIcon = stat?.icon;
                   return (
                     <div
                       key={index}
-                      className={`bg-gradient-to-br ${stat.bgColor} rounded-xl p-5 hover:shadow-md transition-all duration-300 hover:scale-105 group border border-white/50  flex flex-col items-center justify-center`}
+                      className={`bg-gradient-to-br ${stat?.bgColor} rounded-xl p-5 hover:shadow-md transition-all duration-300 hover:scale-105 group border border-white/50  flex flex-col items-center justify-center`}
                     >
                       {/* Icon */}
                       <div className="flex items-center justify-center mb-3">
                         <div
-                          className={`p-2 rounded-lg bg-white/80 ${stat.iconColor}`}
+                          className={`p-2 rounded-lg bg-white/80 ${stat?.iconColor}`}
                         >
                           <StatIcon size={30} />
                         </div>
@@ -83,10 +83,10 @@ const DashboardStatus = () => {
                       {/* Texts */}
                       <div className="text-center">
                         <p className="text-xs font-medium text-gray-600 mb-1">
-                          {stat.label}
+                          {stat?.label}
                         </p>
                         <p className="text-2xl font-bold text-gray-900">
-                          {stat.value}
+                          {stat?.value}
                         </p>
                       </div>
                     </div>

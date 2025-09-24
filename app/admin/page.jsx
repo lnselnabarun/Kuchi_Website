@@ -15,18 +15,24 @@ import {
   ChevronDown,
   Menu,
   X,
-  TrendingUp,
   ArrowUpRight,
-  Activity,
-  ArrowLeft,
-  Save,
-  Globe,
 } from "lucide-react";
 import ManageOrder from "../AdminDasboardPages/ManageOrder";
 import DashboardStatus from "../AdminDasboardPages/DashboardStatus";
 import AccountSettings from "../AdminDasboardPages/AccountSettings";
 import CurrencyConverter from "../AdminDasboardPages/CurrencyConverter";
 import CropProductImage from "../AdminDasboardPages/CropProductImage";
+import AddNewBanner from "../AdminDasboardPages/AddNewBanner";
+import AllBannerList from "../AdminDasboardPages/AllBannerList";
+import EditBanner from "../AdminDasboardPages/EditBanner";
+import AddNewEvent from "../AdminDasboardPages/AddNewEvent";
+import AllEventList from "../AdminDasboardPages/AllEventList";
+import EditEvent from "../AdminDasboardPages/EditEvent";
+import AddNewUser from "../AdminDasboardPages/AddNewUser";
+import AllUserList from "../AdminDasboardPages/AllUserList";
+import EditUser from "../AdminDasboardPages/EditUser";
+import AssignmentList from "../AdminDasboardPages/AssignmentList";
+import AddAssignment from "../AdminDasboardPages/AddAssignment";
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -114,6 +120,7 @@ const AdminDashboard = () => {
     const itemsWithModals = [
       "import-export",
       "manage-product",
+      "manage-user", // Add this line
       "manage-collection",
       "manage-event",
       "manage-banner",
@@ -154,7 +161,6 @@ const AdminDashboard = () => {
     setActiveTab(mainItemId);
   };
 
-  // Get component based on main item and sub item
   const getComponentForSubItem = (mainItemId, subItemLabel) => {
     const componentMap = {
       settings: {
@@ -177,13 +183,20 @@ const AdminDashboard = () => {
         "Add Assignment": "AddAssignment",
         "Assignment List": "AssignmentList",
       },
+      "manage-user": {
+        "Add New User": "AddNewUser",
+        "All User List": "AllUserList",
+        "Edit User": "EditUser", // Added this line
+      },
       "manage-event": {
         "Add New Event": "AddNewEvent",
         "All Event List": "AllEventList",
+        "Edit Event": "EditEvent",
       },
       "manage-banner": {
         "Add New Banner": "AddNewBanner",
         "All Banner List": "AllBannerList",
+        "Edit Banner": "EditBanner",
       },
     };
 
@@ -200,8 +213,7 @@ const AdminDashboard = () => {
     });
     setActiveTab("dashboard"); // or whatever your default is
   };
-console.log(currentPage.component,"currentPage.component")
-  // Render main content based on current page
+
   const renderMainContent = () => {
     // If we're on a subpage, render the appropriate component
     if (currentPage.type === "subpage") {
@@ -212,6 +224,31 @@ console.log(currentPage.component,"currentPage.component")
           return <CurrencyConverter onBack={handleBackToMain} />;
         case "CropProductImage":
           return <CropProductImage onBack={handleBackToMain} />;
+        case "AddNewBanner":
+          return <AddNewBanner onBack={handleBackToMain} />;
+        case "AllBannerList":
+          return <AllBannerList onBack={handleBackToMain} />;
+        case "EditBanner":
+          return <EditBanner onBack={handleBackToMain} />;
+        case "AddNewEvent":
+          return <AddNewEvent onBack={handleBackToMain} />;
+        case "AllEventList":
+          return <AllEventList onBack={handleBackToMain} />;
+        case "EditEvent":
+          return <EditEvent onBack={handleBackToMain} />;
+        case "AddNewUser":
+          return <AddNewUser onBack={handleBackToMain} />;
+        case "AllUserList":
+          return <AllUserList onBack={handleBackToMain} />;
+        case "EditUser":
+          return <EditUser onBack={handleBackToMain} />;
+        case "AssignmentList":
+          return <AssignmentList onBack={handleBackToMain} />;
+        case "AddAssignment":
+          return <AddAssignment onBack={handleBackToMain} />;
+        // Add other cases as needed
+        default:
+          return <DashboardStatus />;
       }
     }
 
@@ -258,6 +295,11 @@ console.log(currentPage.component,"currentPage.component")
           { label: "Add Assignment", icon: FolderOpen },
           { label: "Assignment List", icon: Users },
         ];
+      case "manage-user":
+        return [
+          { label: "Add New User", icon: Users },
+          { label: "All User List", icon: FolderOpen },
+        ];
       case "manage-event":
         return [
           { label: "Add New Event", icon: Calendar },
@@ -302,11 +344,11 @@ console.log(currentPage.component,"currentPage.component")
 
             <nav className="hidden xl:flex space-x-2 flex-1 justify-center max-w-6xl mx-6">
               {menuItems.map((item) => {
-                const Icon = item.icon;
+                const Icon = item?.icon;
                 const isActive = activeTab === item?.id;
                 return (
                   <button
-                    key={item.id}
+                    key={item?.id}
                     onClick={() => handleMenuClick(item.id)}
                     className={`relative px-3 py-3 rounded-xl text-xs font-medium transition-all duration-300 flex flex-col items-center justify-center group min-w-0 flex-1 ${
                       isActive
@@ -316,13 +358,13 @@ console.log(currentPage.component,"currentPage.component")
                   >
                     {isActive && (
                       <div
-                        className={`absolute inset-0 rounded-xl bg-gradient-to-r ${item.color} opacity-10`}
+                        className={`absolute inset-0 rounded-xl bg-gradient-to-r ${item?.color} opacity-10`}
                       />
                     )}
                     <div
                       className={`p-2 rounded-lg mb-1 ${
                         isActive
-                          ? `bg-gradient-to-r ${item.color}`
+                          ? `bg-gradient-to-r ${item?.color}`
                           : "bg-gray-100 group-hover:bg-gray-200"
                       } transition-all duration-300`}
                     >
@@ -336,7 +378,7 @@ console.log(currentPage.component,"currentPage.component")
                     </span>
                     {isActive && (
                       <div
-                        className={`absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-gradient-to-r ${item.color} rounded-full`}
+                        className={`absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-gradient-to-r ${item?.color} rounded-full`}
                       />
                     )}
                   </button>
@@ -394,19 +436,19 @@ console.log(currentPage.component,"currentPage.component")
             <div className="p-6">
               <div className="space-y-2">
                 {getModalOptions().map((option, index) => {
-                  const Icon = option.icon;
+                  const Icon = option?.icon;
                   return (
                     <button
                       key={index}
                       onClick={() => {
                         if (
                           modalType === "profile" &&
-                          option.label === "Sign out"
+                          option?.label === "Sign out"
                         ) {
                           console.log("Sign out clicked");
                           setShowModal(false);
                         } else {
-                          handleSubItemClick(modalType, option.label);
+                          handleSubItemClick(modalType, option?.label);
                         }
                       }}
                       className="w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 flex items-center space-x-3 text-gray-600 hover:text-gray-900 hover:bg-gray-50 group"
@@ -414,7 +456,7 @@ console.log(currentPage.component,"currentPage.component")
                       <div className="p-2 rounded-lg bg-gray-100 group-hover:bg-gray-200 transition-colors">
                         <Icon size={16} />
                       </div>
-                      <span>{option.label}</span>
+                      <span>{option?.label}</span>
                       <ArrowUpRight
                         size={14}
                         className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity"

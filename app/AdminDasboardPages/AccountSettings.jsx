@@ -211,21 +211,21 @@ const AccountSettings = ({ onBack }) => {
             <div className="p-8">
               <div className="space-y-6">
                 {socialMediaFields.map((field) => {
-                  const Icon = field.icon;
+                  const Icon = field?.icon;
                   return (
-                    <div key={field.key}>
+                    <div key={field?.key}>
                       <label className="flex items-center space-x-2 text-sm font-semibold text-slate-700 mb-3">
-                        <div className={`p-2 bg-gradient-to-r ${field.color} rounded-lg shadow-sm`}>
+                        <div className={`p-2 bg-gradient-to-r ${field?.color} rounded-lg shadow-sm`}>
                           <Icon size={16} className="text-white" />
                         </div>
-                        <span>{field.label}</span>
+                        <span>{field?.label}</span>
                       </label>
                       <input
                         type="url"
-                        value={formData[field.key]}
-                        onChange={(e) => handleInputChange(field.key, e.target.value)}
+                        value={formData[field?.key]}
+                        onChange={(e) => handleInputChange(field?.key, e?.target?.value)}
                         className="w-full px-4 py-4 bg-slate-50/80 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all duration-300 text-slate-700 font-medium"
-                        placeholder={field.placeholder}
+                        placeholder={field?.placeholder}
                       />
                     </div>
                   );

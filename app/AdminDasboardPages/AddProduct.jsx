@@ -2,7 +2,6 @@
 import React from "react";
 import { ArrowLeft } from "lucide-react";
 
-// Add Product Component
 const AddProduct = ({ onBack }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 p-4 sm:p-6 lg:p-8">
