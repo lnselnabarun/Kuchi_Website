@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowLeft, Edit, Trash2, Eye, Plus } from "lucide-react";
+import { Edit, Trash2, Eye, Plus } from "lucide-react";
 import EditBanner from "./EditBanner";
 
 const AllBannerList = ({ onBack }) => {

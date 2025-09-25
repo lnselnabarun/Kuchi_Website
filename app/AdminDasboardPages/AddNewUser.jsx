@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowLeft, Save, User } from "lucide-react";
+import {Save, User } from "lucide-react";
 
 const AddNewUser = ({ onBack }) => {
   const [userData, setUserData] = useState({

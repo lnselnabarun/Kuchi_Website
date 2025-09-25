@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowLeft, ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 const AddAssignment = ({ onBack }) => {
   const [collectionProductsExpanded, setCollectionProductsExpanded] = useState(true);

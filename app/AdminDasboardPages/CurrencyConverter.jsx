@@ -6,7 +6,6 @@ import {
   DollarSign,
   TrendingUp,
   Globe,
-  Zap,
   Save,
   Download,
 } from "lucide-react";

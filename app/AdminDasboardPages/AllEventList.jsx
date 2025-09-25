@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowLeft, Edit, Trash2, Eye, Plus } from "lucide-react";
+import { Edit, Trash2, Plus } from "lucide-react";
 import EditEvent from "./EditEvent";
 
 const AllEventList = ({ onBack }) => {

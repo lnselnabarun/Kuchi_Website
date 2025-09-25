@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowLeft, Upload, Eye, RefreshCw } from "lucide-react";
+import { Upload, Eye, RefreshCw } from "lucide-react";
 
 const ImportExportMaster = ({ onBack }) => {
   const [uploadedFile, setUploadedFile] = useState(null);

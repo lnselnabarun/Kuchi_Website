@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowLeft, Save, Upload } from "lucide-react";
+import { Save, Upload } from "lucide-react";
 
 const AddNewBanner = ({ onBack }) => {
   const [bannerData, setBannerData] = useState({

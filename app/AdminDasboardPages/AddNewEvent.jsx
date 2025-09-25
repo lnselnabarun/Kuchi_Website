@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowLeft, Save, Upload, ChevronDown, Plus } from "lucide-react";
+import { Save, Upload, ChevronDown, Plus } from "lucide-react";
 
 const AddNewEvent = ({ onBack }) => {
   const [eventData, setEventData] = useState({
