@@ -33,6 +33,9 @@ import AllUserList from "../AdminDasboardPages/AllUserList";
 import EditUser from "../AdminDasboardPages/EditUser";
 import AssignmentList from "../AdminDasboardPages/AssignmentList";
 import AddAssignment from "../AdminDasboardPages/AddAssignment";
+import ImportExportMaster from "../AdminDasboardPages/ImportExportMaster";
+import ImportExportProduct from "../AdminDasboardPages/ImportExportProduct";
+
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -120,7 +123,7 @@ const AdminDashboard = () => {
     const itemsWithModals = [
       "import-export",
       "manage-product",
-      "manage-user", // Add this line
+      "manage-user",
       "manage-collection",
       "manage-event",
       "manage-banner",
@@ -140,6 +143,9 @@ const AdminDashboard = () => {
         component: null,
       });
     }
+    
+    // Close mobile menu after selection
+    setIsMobileMenuOpen(false);
   };
 
   // Handle sub-item selection from modal
@@ -186,7 +192,7 @@ const AdminDashboard = () => {
       "manage-user": {
         "Add New User": "AddNewUser",
         "All User List": "AllUserList",
-        "Edit User": "EditUser", // Added this line
+        "Edit User": "EditUser",
       },
       "manage-event": {
         "Add New Event": "AddNewEvent",
@@ -211,7 +217,7 @@ const AdminDashboard = () => {
       subItem: null,
       component: null,
     });
-    setActiveTab("dashboard"); // or whatever your default is
+    setActiveTab("dashboard");
   };
 
   const renderMainContent = () => {
@@ -246,21 +252,23 @@ const AdminDashboard = () => {
           return <AssignmentList onBack={handleBackToMain} />;
         case "AddAssignment":
           return <AddAssignment onBack={handleBackToMain} />;
-        // Add other cases as needed
+        case "ImportExportMaster":
+          return <ImportExportMaster onBack={handleBackToMain} />;
+        case "ImportExportProduct":
+          return <ImportExportProduct onBack={handleBackToMain} />;
         default:
           return <DashboardStatus />;
       }
     }
-
+  
     // Main dashboard content
     if (activeTab === "manage-order") {
       return <ManageOrder />;
     } else if (activeTab === "dashboard") {
       return <DashboardStatus />;
     }
-
-    // Add other main tab components here as needed
-    return <ManageOrder />; // Default fallback
+  
+    return <ManageOrder />;
   };
 
   const handleProfileClick = () => {
@@ -325,23 +333,24 @@ const AdminDashboard = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
       <header className="bg-white/80 backdrop-blur-lg shadow-sm border-b border-gray-200/50 sticky top-0 z-40">
         <div className="w-full px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
+          <div className="flex justify-between items-center h-16 sm:h-20">
             <div className="flex items-center flex-shrink-0">
               <div className="flex-shrink-0 flex items-center">
-                <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg">
-                  <span className="text-white font-bold text-xl">K</span>
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg">
+                  <span className="text-white font-bold text-lg sm:text-xl">K</span>
                 </div>
-                <div className="ml-4 hidden sm:block">
-                  <h1 className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+                <div className="ml-3 sm:ml-4 hidden sm:block">
+                  <h1 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
                     Kuchi Jewelry
                   </h1>
-                  <p className="text-sm text-gray-500 font-medium">
+                  <p className="text-xs sm:text-sm text-gray-500 font-medium">
                     Control General Admin
                   </p>
                 </div>
               </div>
             </div>
 
+            {/* Desktop Navigation */}
             <nav className="hidden xl:flex space-x-2 flex-1 justify-center max-w-6xl mx-6">
               {menuItems.map((item) => {
                 const Icon = item?.icon;
@@ -386,41 +395,93 @@ const AdminDashboard = () => {
               })}
             </nav>
 
-            <div className="flex items-center space-x-3 flex-shrink-0">
-              <button className="relative p-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100/60 rounded-xl transition-all duration-200 hover:scale-105">
-                <Bell size={20} />
-                <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-gradient-to-r from-red-500 to-pink-600 rounded-full animate-pulse"></span>
+            <div className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
+              <button className="relative p-2 sm:p-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100/60 rounded-xl transition-all duration-200 hover:scale-105">
+                <Bell size={18} className="sm:w-5 sm:h-5" />
+                <span className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-r from-red-500 to-pink-600 rounded-full animate-pulse"></span>
               </button>
 
               <button
                 onClick={handleProfileClick}
-                className="flex items-center space-x-3 px-4 py-2 text-gray-700 hover:bg-gray-100/60 rounded-xl transition-all duration-200 hover:scale-105"
+                className="flex items-center space-x-2 sm:space-x-3 px-2 sm:px-4 py-2 text-gray-700 hover:bg-gray-100/60 rounded-xl transition-all duration-200 hover:scale-105"
               >
-                <div className="w-9 h-9 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-md">
-                  <User size={16} className="text-white" />
+                <div className="w-8 h-8 sm:w-9 sm:h-9 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-md">
+                  <User size={14} className="sm:w-4 sm:h-4 text-white" />
                 </div>
                 <ChevronDown
-                  size={16}
-                  className="hidden xl:block text-gray-400"
+                  size={14}
+                  className="hidden xl:block text-gray-400 sm:w-4 sm:h-4"
                 />
               </button>
 
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="xl:hidden p-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100/60 rounded-xl transition-all duration-200"
+                className="xl:hidden p-2 sm:p-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100/60 rounded-xl transition-all duration-200"
               >
-                {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                {isMobileMenuOpen ? <X size={18} className="sm:w-5 sm:h-5" /> : <Menu size={18} className="sm:w-5 sm:h-5" />}
               </button>
             </div>
           </div>
         </div>
+
+        {/* Mobile Navigation Menu */}
+        {isMobileMenuOpen && (
+          <div className="xl:hidden bg-white/95 backdrop-blur-lg border-t border-gray-200/50">
+            <div className="px-4 py-4 max-h-96 overflow-y-auto">
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                {menuItems?.map((item) => {
+                  const Icon = item?.icon;
+                  const isActive = activeTab === item?.id;
+                  return (
+                    <button
+                      key={item?.id}
+                      onClick={() => handleMenuClick(item.id)}
+                      className={`relative p-3 rounded-xl text-xs font-medium transition-all duration-300 flex flex-col items-center justify-center group ${
+                        isActive
+                          ? "bg-white text-gray-900 shadow-lg shadow-gray-200/50"
+                          : "text-gray-600 hover:text-gray-900 hover:bg-white/60 hover:shadow-md"
+                      }`}
+                    >
+                      {isActive && (
+                        <div
+                          className={`absolute inset-0 rounded-xl bg-gradient-to-r ${item?.color} opacity-10`}
+                        />
+                      )}
+                      <div
+                        className={`p-2 rounded-lg mb-2 ${
+                          isActive
+                            ? `bg-gradient-to-r ${item?.color}`
+                            : "bg-gray-100 group-hover:bg-gray-200"
+                        } transition-all duration-300`}
+                      >
+                        <Icon
+                          size={16}
+                          className={isActive ? "text-white" : "text-gray-600"}
+                        />
+                      </div>
+                      <span className="text-center leading-tight relative z-10 text-xs">
+                        {item.label}
+                      </span>
+                      {isActive && (
+                        <div
+                          className={`absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-6 h-1 bg-gradient-to-r ${item?.color} rounded-full`}
+                        />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        )}
       </header>
 
+      {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
           <div className="bg-white/95 backdrop-blur-lg rounded-2xl shadow-2xl max-w-md w-full max-h-96 overflow-y-auto border border-gray-200/50">
-            <div className="flex items-center justify-between p-6 border-b border-gray-200/50">
-              <h3 className="text-xl font-bold text-gray-900">
+            <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200/50">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900">
                 {modalType === "profile"
                   ? "Profile Options"
                   : menuItems.find((item) => item.id === modalType)?.label ||
@@ -433,7 +494,7 @@ const AdminDashboard = () => {
                 <X size={20} />
               </button>
             </div>
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
               <div className="space-y-2">
                 {getModalOptions().map((option, index) => {
                   const Icon = option?.icon;
@@ -470,7 +531,7 @@ const AdminDashboard = () => {
         </div>
       )}
 
-      {/* Main Content - ALWAYS RENDERED BELOW HEADER */}
+      {/* Main Content */}
       {renderMainContent()}
     </div>
   );
