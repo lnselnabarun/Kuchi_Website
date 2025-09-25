@@ -29,10 +29,16 @@ const ImportExportProduct = ({ onBack }) => {
   };
 
   const handleAddItem = () => {
-    console.log("Adding product item:", { file: uploadedFile, product: selectedProduct });
+    console.log("Adding product item:", {
+      file: uploadedFile,
+      product: selectedProduct,
+    });
     // Simulate processing
     setShowResults(true);
-    setResultData(["Product import completed successfully", "Records processed: " + (uploadedFile ? "1 file" : "0 files")]);
+    setResultData([
+      "Product import completed successfully",
+      "Records processed: " + (uploadedFile ? "1 file" : "0 files"),
+    ]);
   };
 
   const handleRefresh = () => {
@@ -68,16 +74,17 @@ const ImportExportProduct = ({ onBack }) => {
       <div className="flex-1 p-6 overflow-y-auto">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            
             {/* Export Product Section */}
             <div className="bg-white rounded-xl shadow-lg border border-gray-200/50 overflow-hidden">
               <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center space-x-2">
                   <Upload size={20} className="text-gray-600" />
-                  <h2 className="text-lg font-semibold text-gray-900">Export Product</h2>
+                  <h2 className="text-lg font-semibold text-gray-900">
+                    Export Product
+                  </h2>
                 </div>
               </div>
-              
+
               <div className="p-6 space-y-6">
                 {/* Upload CSV */}
                 <div>
@@ -140,7 +147,9 @@ const ImportExportProduct = ({ onBack }) => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
                     <Upload size={20} className="text-gray-600" />
-                    <h2 className="text-lg font-semibold text-gray-900">Result Structure</h2>
+                    <h2 className="text-lg font-semibold text-gray-900">
+                      Result Structure
+                    </h2>
                   </div>
                   <button
                     onClick={handleRefresh}
@@ -151,7 +160,7 @@ const ImportExportProduct = ({ onBack }) => {
                   </button>
                 </div>
               </div>
-              
+
               <div className="p-6">
                 {!showResults ? (
                   <div className="text-center py-12">
@@ -160,7 +169,10 @@ const ImportExportProduct = ({ onBack }) => {
                 ) : (
                   <div className="space-y-2">
                     {resultData.map((result, index) => (
-                      <div key={index} className="p-3 bg-green-50 border border-green-200 rounded-lg">
+                      <div
+                        key={index}
+                        className="p-3 bg-green-50 border border-green-200 rounded-lg"
+                      >
                         <p className="text-green-800 text-sm">{result}</p>
                       </div>
                     ))}
