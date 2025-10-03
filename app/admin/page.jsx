@@ -35,8 +35,8 @@ import AssignmentList from "../AdminDasboardPages/AssignmentList";
 import AddAssignment from "../AdminDasboardPages/AddAssignment";
 import ImportExportMaster from "../AdminDasboardPages/ImportExportMaster";
 import ImportExportProduct from "../AdminDasboardPages/ImportExportProduct";
-
-
+import MetalRateSetting from "../AdminDasboardPages/MetalRateSetting";
+import AddProduct from "../AdminDasboardPages/AddProduct";
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -175,11 +175,10 @@ const AdminDashboard = () => {
         "Crop Product Image": "CropProductImage",
       },
       "manage-product": {
-        "Add Product": "AddProduct",
+        "Add Product": "AddProducts",
         "Product List": "ProductList",
         "Bulk Editing": "BulkEditing",
-        "Metal Rate Setting": "MetalRateSetting",
-        "Set Variable Price": "SetVariablePrice",
+        "Metal Rate Setting": "MetalRateSetting", // Add this line
         "Set Variable Price": "SetVariablePrice",
       },
       "import-export": {
@@ -206,9 +205,10 @@ const AdminDashboard = () => {
         "Edit Banner": "EditBanner",
       },
     };
-
+  
     return componentMap[mainItemId]?.[subItemLabel] || null;
   };
+  
 
   // Handle back navigation
   const handleBackToMain = () => {
@@ -220,7 +220,6 @@ const AdminDashboard = () => {
     });
     setActiveTab("dashboard");
   };
-
   const renderMainContent = () => {
     // If we're on a subpage, render the appropriate component
     if (currentPage.type === "subpage") {
@@ -231,6 +230,10 @@ const AdminDashboard = () => {
           return <CurrencyConverter onBack={handleBackToMain} />;
         case "CropProductImage":
           return <CropProductImage onBack={handleBackToMain} />;
+        case "MetalRateSetting":
+          return <MetalRateSetting onBack={handleBackToMain} />;
+        case "AddProducts": // This case works correctly
+          return <AddProduct onBack={handleBackToMain} />;
         case "AddNewBanner":
           return <AddNewBanner onBack={handleBackToMain} />;
         case "AllBannerList":
@@ -257,19 +260,30 @@ const AdminDashboard = () => {
           return <ImportExportMaster onBack={handleBackToMain} />;
         case "ImportExportProduct":
           return <ImportExportProduct onBack={handleBackToMain} />;
-        default:
-          return <DashboardStatus />;
+        // default:
+        //   return <DashboardStatus />;
       }
     }
   
-    // Main dashboard content
-    if (activeTab === "manage-order") {
-      return <ManageOrder />;
-    } else if (activeTab === "dashboard") {
-      return <DashboardStatus />;
+    // Main dashboard content - THIS IS THE FIXED PART
+    switch (activeTab) {
+      case "dashboard":
+        return <DashboardStatus />;
+      case "manage-order":
+        return <ManageOrder />;
+      case "manage-product":
+      case "manage-user":
+      case "manage-collection":
+      case "manage-event":
+      case "manage-banner":
+      case "settings":
+      case "import-export":
+        // These tabs use modals, so show dashboard when they're active
+        // but no subpage is selected
+        return <DashboardStatus />;
+      default:
+        return <DashboardStatus />;
     }
-  
-    return <ManageOrder />;
   };
 
   const handleProfileClick = () => {
@@ -398,8 +412,8 @@ const AdminDashboard = () => {
 
             <div className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
               <button className="relative p-2 sm:p-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100/60 rounded-xl transition-all duration-200 hover:scale-105">
-                <Bell size={18} className="sm:w-5 sm:h-5" />
-                <span className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-r from-red-500 to-pink-600 rounded-full animate-pulse"></span>
+                {/* <Bell size={18} className="sm:w-5 sm:h-5" />
+                <span className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-r from-red-500 to-pink-600 rounded-full animate-pulse"></span> */}
               </button>
 
               <button
