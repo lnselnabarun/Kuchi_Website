@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import { 
-  ShoppingCart, 
-  Image as ImageIcon, 
-  Plus, 
+import {
+  ShoppingCart,
+  Image as ImageIcon,
+  Plus,
   ChevronDown,
 } from "lucide-react";
 
@@ -13,20 +13,20 @@ const AddProduct = ({ onBack }) => {
     designType: "NA",
     prefix: "",
     designNo: "",
-    
+
     // Lot Type & No
     lotType: "Select Type",
     lotPrefix: "",
     lotNo: "",
-    
+
     // Show options
     showLot: true,
     showDesign: false,
-    
+
     // Image
     image: null,
     location: "",
-    
+
     // Item details
     itemGroup: "Item Group",
     itemSubGroup: "Item SubGroup",
@@ -36,13 +36,13 @@ const AddProduct = ({ onBack }) => {
     itemWeight: "Item Weight",
     itemCategory: "Item Category",
     stockLedger: "Stock Ledger",
-    
+
     // Video URL
     videoUrl: "",
-    
+
     // Description
     description: "",
-    
+
     // Weight details
     pcs: "",
     qty: "",
@@ -51,10 +51,10 @@ const AddProduct = ({ onBack }) => {
     otherMetalWt: "",
     otherStoneWt: "",
     pureWt: "",
-    
+
     // Weight breakup
     weightBreakupShow: true,
-    
+
     // Price breakup
     priceBreakupShow: true,
     metalAmt: "",
@@ -65,118 +65,139 @@ const AddProduct = ({ onBack }) => {
     variableAmt: "",
     estimatedAmt: "",
     discountedAmt: "",
-    
+
     // Status
     disable: false,
     outOfStock: false,
-    
+
     // Type
     type: "general",
-    
+
     // Show Price
     showPrice: "calculated",
-    
+
     // Metal Details
     showMetal: true,
     metalDetails: [
-      { metal: "", netWeight: "", purity: "", purityPercentage: "", pureWeight: "" }
+      {
+        metal: "",
+        netWeight: "",
+        purity: "",
+        purityPercentage: "",
+        pureWeight: "",
+      },
     ],
-    
-    // Charge Details  
+
+    // Charge Details
     showCharge: true,
     chargeDetails: [
-      { chargeName: "", esChargeRate: "", esCrateType: "", esChargeAmt: "" }
+      { chargeName: "", esChargeRate: "", esCrateType: "", esChargeAmt: "" },
     ],
-    
+
     // Stone Details
     showStone: true,
     stoneDetails: [
-      { 
-        stoneName: "", 
-        pcs: "", 
-        stoneWeight: "", 
-        uM: "", 
-        gram: "", 
-        estSaleRate: "", 
-        estSrateType: "", 
-        estSaleAmt: "", 
-        details: "" 
-      }
+      {
+        stoneName: "",
+        pcs: "",
+        stoneWeight: "",
+        uM: "",
+        gram: "",
+        estSaleRate: "",
+        estSrateType: "",
+        estSaleAmt: "",
+        details: "",
+      },
     ],
-    
+
     // Image Gallery
-    imageGallery: []
+    imageGallery: [],
   });
 
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
   };
 
   const handleFileChange = (field, files) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: files
+      [field]: files,
     }));
   };
 
   const addMetalDetail = () => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      metalDetails: [...prev.metalDetails, { metal: "", netWeight: "", purity: "", purityPercentage: "", pureWeight: "" }]
+      metalDetails: [
+        ...prev.metalDetails,
+        {
+          metal: "",
+          netWeight: "",
+          purity: "",
+          purityPercentage: "",
+          pureWeight: "",
+        },
+      ],
     }));
   };
 
   const addChargeDetail = () => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      chargeDetails: [...prev.chargeDetails, { chargeName: "", esChargeRate: "", esCrateType: "", esChargeAmt: "" }]
+      chargeDetails: [
+        ...prev.chargeDetails,
+        { chargeName: "", esChargeRate: "", esCrateType: "", esChargeAmt: "" },
+      ],
     }));
   };
 
   const addStoneDetail = () => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      stoneDetails: [...prev.stoneDetails, { 
-        stoneName: "", 
-        pcs: "", 
-        stoneWeight: "", 
-        uM: "", 
-        gram: "", 
-        estSaleRate: "", 
-        estSrateType: "", 
-        estSaleAmt: "", 
-        details: "" 
-      }]
+      stoneDetails: [
+        ...prev.stoneDetails,
+        {
+          stoneName: "",
+          pcs: "",
+          stoneWeight: "",
+          uM: "",
+          gram: "",
+          estSaleRate: "",
+          estSrateType: "",
+          estSaleAmt: "",
+          details: "",
+        },
+      ],
     }));
   };
 
   const handleMetalDetailChange = (index, field, value) => {
     const updatedDetails = [...formData.metalDetails];
     updatedDetails[index][field] = value;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      metalDetails: updatedDetails
+      metalDetails: updatedDetails,
     }));
   };
 
   const handleChargeDetailChange = (index, field, value) => {
     const updatedDetails = [...formData.chargeDetails];
     updatedDetails[index][field] = value;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      chargeDetails: updatedDetails
+      chargeDetails: updatedDetails,
     }));
   };
 
   const handleStoneDetailChange = (index, field, value) => {
     const updatedDetails = [...formData.stoneDetails];
     updatedDetails[index][field] = value;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      stoneDetails: updatedDetails
+      stoneDetails: updatedDetails,
     }));
   };
 
@@ -215,21 +236,21 @@ const AddProduct = ({ onBack }) => {
 
         {/* Main Form */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-          
           {/* Basic Information Section */}
           <div className="mb-8">
             <h2 className="text-lg font-semibold text-gray-900 mb-4 border-b border-gray-200 pb-2">
               Basic Information
             </h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              
               {/* Design Type & No */}
               <div className="space-y-4">
                 <RequiredLabel required>Design Type & No</RequiredLabel>
-                <select 
+                <select
                   value={formData?.designType}
-                  onChange={(e) => handleInputChange('designType', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("designType", e.target.value)
+                  }
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   required
                 >
@@ -244,7 +265,9 @@ const AddProduct = ({ onBack }) => {
                     type="text"
                     placeholder="Prefix *"
                     value={formData?.prefix}
-                    onChange={(e) => handleInputChange('prefix', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("prefix", e.target.value)
+                    }
                     className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     required
                   />
@@ -252,7 +275,9 @@ const AddProduct = ({ onBack }) => {
                     type="text"
                     placeholder="Design No *"
                     value={formData?.designNo}
-                    onChange={(e) => handleInputChange('designNo', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("designNo", e.target.value)
+                    }
                     className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     required
                   />
@@ -262,9 +287,9 @@ const AddProduct = ({ onBack }) => {
               {/* Lot Type & No */}
               <div className="space-y-4">
                 <RequiredLabel>Lot Type & No</RequiredLabel>
-                <select 
+                <select
                   value={formData?.lotType}
-                  onChange={(e) => handleInputChange('lotType', e.target.value)}
+                  onChange={(e) => handleInputChange("lotType", e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 >
                   <option value="Select Type">Select Type</option>
@@ -277,14 +302,16 @@ const AddProduct = ({ onBack }) => {
                     type="text"
                     placeholder="Prefix"
                     value={formData?.lotPrefix}
-                    onChange={(e) => handleInputChange('lotPrefix', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("lotPrefix", e.target.value)
+                    }
                     className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                   <input
                     type="text"
                     placeholder="Lot No"
                     value={formData?.lotNo}
-                    onChange={(e) => handleInputChange('lotNo', e.target.value)}
+                    onChange={(e) => handleInputChange("lotNo", e.target.value)}
                     className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -300,8 +327,8 @@ const AddProduct = ({ onBack }) => {
                       name="show"
                       checked={formData?.showLot}
                       onChange={(e) => {
-                        handleInputChange('showLot', true);
-                        handleInputChange('showDesign', false);
+                        handleInputChange("showLot", true);
+                        handleInputChange("showDesign", false);
                       }}
                       className="mr-2"
                       required
@@ -314,8 +341,8 @@ const AddProduct = ({ onBack }) => {
                       name="show"
                       checked={formData?.showDesign}
                       onChange={(e) => {
-                        handleInputChange('showDesign', true);
-                        handleInputChange('showLot', false);
+                        handleInputChange("showDesign", true);
+                        handleInputChange("showLot", false);
                       }}
                       className="mr-2"
                       required
@@ -323,13 +350,15 @@ const AddProduct = ({ onBack }) => {
                     <span className="text-sm text-gray-600">Design</span>
                   </label>
                 </div>
-                
+
                 <div>
                   <RequiredLabel required>Product Image</RequiredLabel>
                   <input
                     type="file"
                     accept="image/*"
-                    onChange={(e) => handleFileChange('image', e.target.files[0])}
+                    onChange={(e) =>
+                      handleFileChange("image", e.target.files[0])
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     required
                   />
@@ -341,7 +370,9 @@ const AddProduct = ({ onBack }) => {
                     type="text"
                     placeholder="Storage Location"
                     value={formData?.location}
-                    onChange={(e) => handleInputChange('location', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("location", e.target.value)
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
@@ -354,13 +385,15 @@ const AddProduct = ({ onBack }) => {
             <h2 className="text-lg font-semibold text-gray-900 mb-4 border-b border-gray-200 pb-2">
               Item Details
             </h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <div>
                 <RequiredLabel required>Item Group</RequiredLabel>
-                <select 
+                <select
                   value={formData?.itemGroup}
-                  onChange={(e) => handleInputChange('itemGroup', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("itemGroup", e.target.value)
+                  }
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   required
                 >
@@ -373,9 +406,11 @@ const AddProduct = ({ onBack }) => {
 
               <div>
                 <RequiredLabel required>Item Style</RequiredLabel>
-                <select 
+                <select
                   value={formData?.itemStyle}
-                  onChange={(e) => handleInputChange('itemStyle', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("itemStyle", e.target.value)
+                  }
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   required
                 >
@@ -388,9 +423,11 @@ const AddProduct = ({ onBack }) => {
 
               <div>
                 <RequiredLabel required>Item SubGroup</RequiredLabel>
-                <select 
+                <select
                   value={formData?.itemSubGroup}
-                  onChange={(e) => handleInputChange('itemSubGroup', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("itemSubGroup", e.target.value)
+                  }
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   required
                 >
@@ -402,9 +439,11 @@ const AddProduct = ({ onBack }) => {
 
               <div>
                 <RequiredLabel required>Item Size</RequiredLabel>
-                <select 
+                <select
                   value={formData?.itemSize}
-                  onChange={(e) => handleInputChange('itemSize', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("itemSize", e.target.value)
+                  }
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   required
                 >
@@ -417,9 +456,11 @@ const AddProduct = ({ onBack }) => {
 
               <div>
                 <RequiredLabel required>Item Name</RequiredLabel>
-                <select 
+                <select
                   value={formData?.itemName}
-                  onChange={(e) => handleInputChange('itemName', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("itemName", e.target.value)
+                  }
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   required
                 >
@@ -432,9 +473,11 @@ const AddProduct = ({ onBack }) => {
 
               <div>
                 <RequiredLabel required>Item Weight</RequiredLabel>
-                <select 
+                <select
                   value={formData?.itemWeight}
-                  onChange={(e) => handleInputChange('itemWeight', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("itemWeight", e.target.value)
+                  }
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   required
                 >
@@ -447,9 +490,11 @@ const AddProduct = ({ onBack }) => {
 
               <div>
                 <RequiredLabel required>Item Category</RequiredLabel>
-                <select 
+                <select
                   value={formData?.itemCategory}
-                  onChange={(e) => handleInputChange('itemCategory', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("itemCategory", e.target.value)
+                  }
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   required
                 >
@@ -462,9 +507,11 @@ const AddProduct = ({ onBack }) => {
 
               <div>
                 <RequiredLabel required>Stock Ledger</RequiredLabel>
-                <select 
+                <select
                   value={formData?.stockLedger}
-                  onChange={(e) => handleInputChange('stockLedger', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("stockLedger", e.target.value)
+                  }
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   required
                 >
@@ -481,7 +528,7 @@ const AddProduct = ({ onBack }) => {
             <h2 className="text-lg font-semibold text-gray-900 mb-4 border-b border-gray-200 pb-2">
               Weight & Quantity Details
             </h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="space-y-4">
                 <div>
@@ -489,7 +536,7 @@ const AddProduct = ({ onBack }) => {
                   <input
                     type="number"
                     value={formData?.pcs}
-                    onChange={(e) => handleInputChange('pcs', e.target.value)}
+                    onChange={(e) => handleInputChange("pcs", e.target.value)}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Enter pieces"
                     required
@@ -502,7 +549,7 @@ const AddProduct = ({ onBack }) => {
                   <input
                     type="number"
                     value={formData?.qty}
-                    onChange={(e) => handleInputChange('qty', e.target.value)}
+                    onChange={(e) => handleInputChange("qty", e.target.value)}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Enter quantity"
                     required
@@ -514,20 +561,28 @@ const AddProduct = ({ onBack }) => {
                   <input
                     type="checkbox"
                     checked={formData?.weightBreakupShow}
-                    onChange={(e) => handleInputChange('weightBreakupShow', e.target.checked)}
+                    onChange={(e) =>
+                      handleInputChange("weightBreakupShow", e.target.checked)
+                    }
                     className="rounded"
                   />
-                  <span className="text-sm text-gray-600">Weight Breakup Show</span>
+                  <span className="text-sm text-gray-600">
+                    Weight Breakup Show
+                  </span>
                 </div>
 
                 <div className="flex items-center space-x-2">
                   <input
                     type="checkbox"
                     checked={formData?.priceBreakupShow}
-                    onChange={(e) => handleInputChange('priceBreakupShow', e.target.checked)}
+                    onChange={(e) =>
+                      handleInputChange("priceBreakupShow", e.target.checked)
+                    }
                     className="rounded"
                   />
-                  <span className="text-sm text-gray-600">Price Breakup Show</span>
+                  <span className="text-sm text-gray-600">
+                    Price Breakup Show
+                  </span>
                 </div>
               </div>
 
@@ -538,7 +593,9 @@ const AddProduct = ({ onBack }) => {
                     type="number"
                     step="0.01"
                     value={formData?.grossWt}
-                    onChange={(e) => handleInputChange('grossWt', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("grossWt", e.target.value)
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="0.00"
                     required
@@ -552,7 +609,7 @@ const AddProduct = ({ onBack }) => {
                     type="number"
                     step="0.01"
                     value={formData?.netWt}
-                    onChange={(e) => handleInputChange('netWt', e.target.value)}
+                    onChange={(e) => handleInputChange("netWt", e.target.value)}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="0.00"
                     required
@@ -566,7 +623,9 @@ const AddProduct = ({ onBack }) => {
                     type="number"
                     step="0.01"
                     value={formData?.otherMetalWt}
-                    onChange={(e) => handleInputChange('otherMetalWt', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("otherMetalWt", e.target.value)
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="0.00"
                     min="0"
@@ -579,7 +638,9 @@ const AddProduct = ({ onBack }) => {
                     type="number"
                     step="0.01"
                     value={formData?.otherStoneWt}
-                    onChange={(e) => handleInputChange('otherStoneWt', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("otherStoneWt", e.target.value)
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="0.00"
                     min="0"
@@ -592,7 +653,9 @@ const AddProduct = ({ onBack }) => {
                     type="number"
                     step="0.01"
                     value={formData?.pureWt}
-                    onChange={(e) => handleInputChange('pureWt', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("pureWt", e.target.value)
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="0.00"
                     min="0"
@@ -607,7 +670,9 @@ const AddProduct = ({ onBack }) => {
                     type="number"
                     step="0.01"
                     value={formData?.metalAmt}
-                    onChange={(e) => handleInputChange('metalAmt', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("metalAmt", e.target.value)
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="0.00"
                     min="0"
@@ -620,7 +685,9 @@ const AddProduct = ({ onBack }) => {
                     type="number"
                     step="0.01"
                     value={formData?.otherMetalAmt}
-                    onChange={(e) => handleInputChange('otherMetalAmt', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("otherMetalAmt", e.target.value)
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="0.00"
                     min="0"
@@ -633,7 +700,9 @@ const AddProduct = ({ onBack }) => {
                     type="number"
                     step="0.01"
                     value={formData?.otherStoneAmt}
-                    onChange={(e) => handleInputChange('otherStoneAmt', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("otherStoneAmt", e.target.value)
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="0.00"
                     min="0"
@@ -646,7 +715,9 @@ const AddProduct = ({ onBack }) => {
                     type="number"
                     step="0.01"
                     value={formData?.chargeAmt}
-                    onChange={(e) => handleInputChange('chargeAmt', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("chargeAmt", e.target.value)
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="0.00"
                     min="0"
@@ -659,7 +730,9 @@ const AddProduct = ({ onBack }) => {
                     type="number"
                     step="0.01"
                     value={formData?.totalAmt}
-                    onChange={(e) => handleInputChange('totalAmt', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("totalAmt", e.target.value)
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="0.00"
                     required
@@ -675,7 +748,9 @@ const AddProduct = ({ onBack }) => {
                     type="number"
                     step="0.01"
                     value={formData?.variableAmt}
-                    onChange={(e) => handleInputChange('variableAmt', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("variableAmt", e.target.value)
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="0.00"
                     min="0"
@@ -688,7 +763,9 @@ const AddProduct = ({ onBack }) => {
                     type="number"
                     step="0.01"
                     value={formData?.estimatedAmt}
-                    onChange={(e) => handleInputChange('estimatedAmt', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("estimatedAmt", e.target.value)
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="0.00"
                     min="0"
@@ -701,7 +778,9 @@ const AddProduct = ({ onBack }) => {
                     type="number"
                     step="0.01"
                     value={formData?.discountedAmt}
-                    onChange={(e) => handleInputChange('discountedAmt', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("discountedAmt", e.target.value)
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="0.00"
                     min="0"
@@ -713,16 +792,22 @@ const AddProduct = ({ onBack }) => {
                     <input
                       type="checkbox"
                       checked={formData?.disable}
-                      onChange={(e) => handleInputChange('disable', e.target.checked)}
+                      onChange={(e) =>
+                        handleInputChange("disable", e.target.checked)
+                      }
                       className="mr-2 rounded"
                     />
-                    <span className="text-sm text-gray-600">Disable Product</span>
+                    <span className="text-sm text-gray-600">
+                      Disable Product
+                    </span>
                   </label>
                   <label className="flex items-center">
                     <input
                       type="checkbox"
                       checked={formData?.outOfStock}
-                      onChange={(e) => handleInputChange('outOfStock', e.target.checked)}
+                      onChange={(e) =>
+                        handleInputChange("outOfStock", e.target.checked)
+                      }
                       className="mr-2 rounded"
                     />
                     <span className="text-sm text-gray-600">Out Of Stock</span>
@@ -737,8 +822,10 @@ const AddProduct = ({ onBack }) => {
                         type="radio"
                         name="type"
                         value="general"
-                        checked={formData?.type === 'general'}
-                        onChange={(e) => handleInputChange('type', e.target.value)}
+                        checked={formData?.type === "general"}
+                        onChange={(e) =>
+                          handleInputChange("type", e.target.value)
+                        }
                         className="mr-2"
                         required
                       />
@@ -749,8 +836,10 @@ const AddProduct = ({ onBack }) => {
                         type="radio"
                         name="type"
                         value="collection"
-                        checked={formData?.type === 'collection'}
-                        onChange={(e) => handleInputChange('type', e.target.value)}
+                        checked={formData?.type === "collection"}
+                        onChange={(e) =>
+                          handleInputChange("type", e.target.value)
+                        }
                         className="mr-2"
                         required
                       />
@@ -767,8 +856,10 @@ const AddProduct = ({ onBack }) => {
                         type="radio"
                         name="showPrice"
                         value="calculated"
-                        checked={formData?.showPrice === 'calculated'}
-                        onChange={(e) => handleInputChange('showPrice', e.target.value)}
+                        checked={formData?.showPrice === "calculated"}
+                        onChange={(e) =>
+                          handleInputChange("showPrice", e.target.value)
+                        }
                         className="mr-2"
                         required
                       />
@@ -779,8 +870,10 @@ const AddProduct = ({ onBack }) => {
                         type="radio"
                         name="showPrice"
                         value="variable"
-                        checked={formData?.showPrice === 'variable'}
-                        onChange={(e) => handleInputChange('showPrice', e.target.value)}
+                        checked={formData?.showPrice === "variable"}
+                        onChange={(e) =>
+                          handleInputChange("showPrice", e.target.value)
+                        }
                         className="mr-2"
                         required
                       />
@@ -791,8 +884,10 @@ const AddProduct = ({ onBack }) => {
                         type="radio"
                         name="showPrice"
                         value="estimated"
-                        checked={formData?.showPrice === 'estimated'}
-                        onChange={(e) => handleInputChange('showPrice', e.target.value)}
+                        checked={formData?.showPrice === "estimated"}
+                        onChange={(e) =>
+                          handleInputChange("showPrice", e.target.value)
+                        }
                         className="mr-2"
                         required
                       />
@@ -809,7 +904,7 @@ const AddProduct = ({ onBack }) => {
             <h2 className="text-lg font-semibold text-gray-900 mb-4 border-b border-gray-200 pb-2">
               Additional Information
             </h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <RequiredLabel>Video URL</RequiredLabel>
@@ -817,7 +912,9 @@ const AddProduct = ({ onBack }) => {
                   type="url"
                   placeholder="https://example.com/video.mp4"
                   value={formData?.videoUrl}
-                  onChange={(e) => handleInputChange('videoUrl', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("videoUrl", e.target.value)
+                  }
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
@@ -828,7 +925,9 @@ const AddProduct = ({ onBack }) => {
                   rows="4"
                   placeholder="Enter detailed product description..."
                   value={formData?.description}
-                  onChange={(e) => handleInputChange('description', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("description", e.target.value)
+                  }
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
@@ -845,10 +944,14 @@ const AddProduct = ({ onBack }) => {
               type="file"
               accept="image/*"
               multiple
-              onChange={(e) => handleFileChange('imageGallery', Array.from(e.target.files))}
+              onChange={(e) =>
+                handleFileChange("imageGallery", Array.from(e.target.files))
+              }
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
-            <p className="text-sm text-gray-500 mt-2">Select multiple images to create a product gallery</p>
+            <p className="text-sm text-gray-500 mt-2">
+              Select multiple images to create a product gallery
+            </p>
           </div>
 
           {/* Metal Details Section */}
@@ -861,7 +964,9 @@ const AddProduct = ({ onBack }) => {
                 <input
                   type="checkbox"
                   checked={formData?.showMetal}
-                  onChange={(e) => handleInputChange('showMetal', e.target.checked)}
+                  onChange={(e) =>
+                    handleInputChange("showMetal", e.target.checked)
+                  }
                   className="ml-4 rounded"
                 />
                 <span className="text-sm text-gray-600 ml-2">Show Metal</span>
@@ -874,7 +979,7 @@ const AddProduct = ({ onBack }) => {
                 <span className="text-sm font-medium">Add Metal</span>
               </button>
             </div>
-            
+
             <div className="overflow-x-auto">
               <table className="w-full border border-gray-300 rounded-lg">
                 <thead className="bg-gray-50">
@@ -902,7 +1007,13 @@ const AddProduct = ({ onBack }) => {
                       <td className="px-4 py-3 border-r border-gray-300">
                         <select
                           value={detail?.metal}
-                          onChange={(e) => handleMetalDetailChange(index, 'metal', e.target.value)}
+                          onChange={(e) =>
+                            handleMetalDetailChange(
+                              index,
+                              "metal",
+                              e.target.value
+                            )
+                          }
                           className="w-full px-2 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                           required
                         >
@@ -917,7 +1028,13 @@ const AddProduct = ({ onBack }) => {
                           type="number"
                           step="0.01"
                           value={detail.netWeight}
-                          onChange={(e) => handleMetalDetailChange(index, 'netWeight', e.target.value)}
+                          onChange={(e) =>
+                            handleMetalDetailChange(
+                              index,
+                              "netWeight",
+                              e.target.value
+                            )
+                          }
                           className="w-full px-2 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                           placeholder="0.00"
                           required
@@ -927,7 +1044,13 @@ const AddProduct = ({ onBack }) => {
                       <td className="px-4 py-3 border-r border-gray-300">
                         <select
                           value={detail.purity}
-                          onChange={(e) => handleMetalDetailChange(index, 'purity', e.target.value)}
+                          onChange={(e) =>
+                            handleMetalDetailChange(
+                              index,
+                              "purity",
+                              e.target.value
+                            )
+                          }
                           className="w-full px-2 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                           required
                         >
@@ -943,7 +1066,13 @@ const AddProduct = ({ onBack }) => {
                           type="number"
                           step="0.01"
                           value={detail.purityPercentage}
-                          onChange={(e) => handleMetalDetailChange(index, 'purityPercentage', e.target.value)}
+                          onChange={(e) =>
+                            handleMetalDetailChange(
+                              index,
+                              "purityPercentage",
+                              e.target.value
+                            )
+                          }
                           className="w-full px-2 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                           placeholder="0.00"
                           required
@@ -956,7 +1085,13 @@ const AddProduct = ({ onBack }) => {
                           type="number"
                           step="0.01"
                           value={detail.pureWeight}
-                          onChange={(e) => handleMetalDetailChange(index, 'pureWeight', e.target.value)}
+                          onChange={(e) =>
+                            handleMetalDetailChange(
+                              index,
+                              "pureWeight",
+                              e.target.value
+                            )
+                          }
                           className="w-full px-2 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                           placeholder="0.00"
                           required
@@ -980,7 +1115,9 @@ const AddProduct = ({ onBack }) => {
                 <input
                   type="checkbox"
                   checked={formData?.showCharge}
-                  onChange={(e) => handleInputChange('showCharge', e.target.checked)}
+                  onChange={(e) =>
+                    handleInputChange("showCharge", e.target.checked)
+                  }
                   className="ml-4 rounded"
                 />
                 <span className="text-sm text-gray-600 ml-2">Show Charge</span>
@@ -993,7 +1130,7 @@ const AddProduct = ({ onBack }) => {
                 <span className="text-sm font-medium">Add Charge</span>
               </button>
             </div>
-            
+
             <div className="overflow-x-auto">
               <table className="w-full border border-gray-300 rounded-lg">
                 <thead className="bg-gray-50">
@@ -1018,7 +1155,13 @@ const AddProduct = ({ onBack }) => {
                       <td className="px-4 py-3 border-r border-gray-300">
                         <select
                           value={detail?.chargeName}
-                          onChange={(e) => handleChargeDetailChange(index, 'chargeName', e.target.value)}
+                          onChange={(e) =>
+                            handleChargeDetailChange(
+                              index,
+                              "chargeName",
+                              e.target.value
+                            )
+                          }
                           className="w-full px-2 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                           required
                         >
@@ -1034,7 +1177,13 @@ const AddProduct = ({ onBack }) => {
                           type="number"
                           step="0.01"
                           value={detail?.esChargeRate}
-                          onChange={(e) => handleChargeDetailChange(index, 'esChargeRate', e.target.value)}
+                          onChange={(e) =>
+                            handleChargeDetailChange(
+                              index,
+                              "esChargeRate",
+                              e.target.value
+                            )
+                          }
                           className="w-full px-2 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                           placeholder="0.00"
                           required
@@ -1044,7 +1193,13 @@ const AddProduct = ({ onBack }) => {
                       <td className="px-4 py-3 border-r border-gray-300">
                         <select
                           value={detail?.esCrateType}
-                          onChange={(e) => handleChargeDetailChange(index, 'esCrateType', e.target.value)}
+                          onChange={(e) =>
+                            handleChargeDetailChange(
+                              index,
+                              "esCrateType",
+                              e.target.value
+                            )
+                          }
                           className="w-full px-2 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                           required
                         >
@@ -1059,7 +1214,13 @@ const AddProduct = ({ onBack }) => {
                           type="number"
                           step="0.01"
                           value={detail?.esChargeAmt}
-                          onChange={(e) => handleChargeDetailChange(index, 'esChargeAmt', e.target.value)}
+                          onChange={(e) =>
+                            handleChargeDetailChange(
+                              index,
+                              "esChargeAmt",
+                              e.target.value
+                            )
+                          }
                           className="w-full px-2 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                           placeholder="0.00"
                           required
@@ -1083,7 +1244,9 @@ const AddProduct = ({ onBack }) => {
                 <input
                   type="checkbox"
                   checked={formData?.showStone}
-                  onChange={(e) => handleInputChange('showStone', e.target.checked)}
+                  onChange={(e) =>
+                    handleInputChange("showStone", e.target.checked)
+                  }
                   className="ml-4 rounded"
                 />
                 <span className="text-sm text-gray-600 ml-2">Show Stone</span>
@@ -1096,7 +1259,7 @@ const AddProduct = ({ onBack }) => {
                 <span className="text-sm font-medium">Add Stone</span>
               </button>
             </div>
-            
+
             <div className="overflow-x-auto">
               <table className="w-full border border-gray-300 rounded-lg">
                 <thead className="bg-gray-50">
@@ -1136,7 +1299,13 @@ const AddProduct = ({ onBack }) => {
                       <td className="px-3 py-3 border-r border-gray-300">
                         <select
                           value={detail?.stoneName}
-                          onChange={(e) => handleStoneDetailChange(index, 'stoneName', e.target.value)}
+                          onChange={(e) =>
+                            handleStoneDetailChange(
+                              index,
+                              "stoneName",
+                              e.target.value
+                            )
+                          }
                           className="w-full px-2 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500 min-w-[120px]"
                           required
                         >
@@ -1152,7 +1321,13 @@ const AddProduct = ({ onBack }) => {
                         <input
                           type="number"
                           value={detail?.pcs}
-                          onChange={(e) => handleStoneDetailChange(index, 'pcs', e.target.value)}
+                          onChange={(e) =>
+                            handleStoneDetailChange(
+                              index,
+                              "pcs",
+                              e.target.value
+                            )
+                          }
                           className="w-full px-2 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500 min-w-[80px]"
                           placeholder="0"
                           required
@@ -1164,7 +1339,13 @@ const AddProduct = ({ onBack }) => {
                           type="number"
                           step="0.01"
                           value={detail?.stoneWeight}
-                          onChange={(e) => handleStoneDetailChange(index, 'stoneWeight', e.target.value)}
+                          onChange={(e) =>
+                            handleStoneDetailChange(
+                              index,
+                              "stoneWeight",
+                              e.target.value
+                            )
+                          }
                           className="w-full px-2 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500 min-w-[100px]"
                           placeholder="0.00"
                           required
@@ -1174,7 +1355,9 @@ const AddProduct = ({ onBack }) => {
                       <td className="px-3 py-3 border-r border-gray-300">
                         <select
                           value={detail?.uM}
-                          onChange={(e) => handleStoneDetailChange(index, 'uM', e.target.value)}
+                          onChange={(e) =>
+                            handleStoneDetailChange(index, "uM", e.target.value)
+                          }
                           className="w-full px-2 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500 min-w-[80px]"
                           required
                         >
@@ -1189,7 +1372,13 @@ const AddProduct = ({ onBack }) => {
                           type="number"
                           step="0.01"
                           value={detail?.gram}
-                          onChange={(e) => handleStoneDetailChange(index, 'gram', e.target.value)}
+                          onChange={(e) =>
+                            handleStoneDetailChange(
+                              index,
+                              "gram",
+                              e.target.value
+                            )
+                          }
                           className="w-full px-2 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500 min-w-[80px]"
                           placeholder="0.00"
                           required
@@ -1201,7 +1390,13 @@ const AddProduct = ({ onBack }) => {
                           type="number"
                           step="0.01"
                           value={detail?.estSaleRate}
-                          onChange={(e) => handleStoneDetailChange(index, 'estSaleRate', e.target.value)}
+                          onChange={(e) =>
+                            handleStoneDetailChange(
+                              index,
+                              "estSaleRate",
+                              e.target.value
+                            )
+                          }
                           className="w-full px-2 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500 min-w-[100px]"
                           placeholder="0.00"
                           required
@@ -1211,7 +1406,13 @@ const AddProduct = ({ onBack }) => {
                       <td className="px-3 py-3 border-r border-gray-300">
                         <select
                           value={detail?.estSrateType}
-                          onChange={(e) => handleStoneDetailChange(index, 'estSrateType', e.target.value)}
+                          onChange={(e) =>
+                            handleStoneDetailChange(
+                              index,
+                              "estSrateType",
+                              e.target.value
+                            )
+                          }
                           className="w-full px-2 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500 min-w-[100px]"
                           required
                         >
@@ -1226,7 +1427,13 @@ const AddProduct = ({ onBack }) => {
                           type="number"
                           step="0.01"
                           value={detail?.estSaleAmt}
-                          onChange={(e) => handleStoneDetailChange(index, 'estSaleAmt', e.target.value)}
+                          onChange={(e) =>
+                            handleStoneDetailChange(
+                              index,
+                              "estSaleAmt",
+                              e.target.value
+                            )
+                          }
                           className="w-full px-2 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500 min-w-[100px]"
                           placeholder="0.00"
                           required
@@ -1237,7 +1444,13 @@ const AddProduct = ({ onBack }) => {
                         <input
                           type="text"
                           value={detail?.details}
-                          onChange={(e) => handleStoneDetailChange(index, 'details', e.target.value)}
+                          onChange={(e) =>
+                            handleStoneDetailChange(
+                              index,
+                              "details",
+                              e.target.value
+                            )
+                          }
                           className="w-full px-2 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500 min-w-[120px]"
                           placeholder="Additional details"
                         />
@@ -1270,9 +1483,9 @@ const AddProduct = ({ onBack }) => {
               </button>
               <button
                 onClick={() => {
-                  console.log('Form Data:', formData);
+                  console.log("Form Data:", formData);
                   // Handle form submission here
-                  alert('Product saved successfully! (This is a demo)');
+                  alert("Product saved successfully! (This is a demo)");
                 }}
                 className="px-6 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-colors font-medium shadow-md"
               >
