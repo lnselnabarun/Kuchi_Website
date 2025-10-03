@@ -61,9 +61,7 @@ const MetalRateSetting = ({ onBack }) => {
           className={`w-full px-6 py-4 flex items-center justify-between text-left hover:bg-gray-50 transition-colors ${color}`}
         >
           <div className="flex items-center space-x-3">
-            <div className={`p-2 rounded-lg bg-gray-100`}>
-              {icon}
-            </div>
+            <div className={`p-2 rounded-lg bg-gray-100`}>{icon}</div>
             <h3 className="text-lg font-semibold text-gray-700">{title}</h3>
           </div>
           <div className="flex items-center space-x-2">
@@ -88,7 +86,9 @@ const MetalRateSetting = ({ onBack }) => {
                       <input
                         type="number"
                         value={rate}
-                        onChange={(e) => handleRateChange(metal, type, e.target.value)}
+                        onChange={(e) =>
+                          handleRateChange(metal, type, e.target.value)
+                        }
                         className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-right font-medium"
                         placeholder="0"
                       />

@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 const AddAssignment = ({ onBack }) => {
-  const [collectionProductsExpanded, setCollectionProductsExpanded] = useState(true);
-  const [selectedProductsExpanded, setSelectedProductsExpanded] = useState(true);
-  const [createCollectionExpanded, setCreateCollectionExpanded] = useState(true);
+  const [collectionProductsExpanded, setCollectionProductsExpanded] =
+    useState(true);
+  const [selectedProductsExpanded, setSelectedProductsExpanded] =
+    useState(true);
+  const [createCollectionExpanded, setCreateCollectionExpanded] =
+    useState(true);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [formData, setFormData] = useState({
     collectionTitle: "",
     passwordCode: "",
-    status: "Active"
+    status: "Active",
   });
 
   const collectionProducts = [
@@ -25,7 +28,7 @@ const AddAssignment = ({ onBack }) => {
         category: "CATEGORY",
         subcategory: "SWAROV.HANDMADE",
         weight: "",
-        stkLedger: "09 KARAT SWAROVSKI ORNAMENTS"
+        stkLedger: "09 KARAT SWAROVSKI ORNAMENTS",
       },
       weight: {
         gross: "11.090",
@@ -34,7 +37,7 @@ const AddAssignment = ({ onBack }) => {
         net: "9.190",
         pure: "3.544",
         pcs: "1",
-        qty: "2"
+        qty: "2",
       },
       amount: {
         metal: "12866.00",
@@ -43,24 +46,24 @@ const AddAssignment = ({ onBack }) => {
         charge: "9190.00",
         calculatedTotal: "23006.00",
         variableTotal: "38400.00",
-        estimatedTotal: "32000.00"
-      }
-    }
+        estimatedTotal: "32000.00",
+      },
+    },
   ];
 
   const handleProductSelect = (product) => {
-    const isSelected = selectedProducts.some(p => p.id === product.id);
+    const isSelected = selectedProducts.some((p) => p.id === product.id);
     if (isSelected) {
-      setSelectedProducts(selectedProducts.filter(p => p.id !== product.id));
+      setSelectedProducts(selectedProducts.filter((p) => p.id !== product.id));
     } else {
       setSelectedProducts([...selectedProducts, product]);
     }
   };
 
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
   };
 
@@ -74,15 +77,15 @@ const AddAssignment = ({ onBack }) => {
 
   return (
     <div className="flex flex-col h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
-
       {/* Main Content */}
       <div className="flex-1 p-6 overflow-y-auto">
         <div className="max-w-full mx-auto space-y-6">
-          
           {/* Collection Product Details Section */}
           <div className="bg-white rounded-xl shadow-lg border border-gray-200/50 overflow-hidden">
             <button
-              onClick={() => setCollectionProductsExpanded(!collectionProductsExpanded)}
+              onClick={() =>
+                setCollectionProductsExpanded(!collectionProductsExpanded)
+              }
               className="w-full bg-teal-50 border-b border-teal-200 px-6 py-4 flex items-center justify-between hover:bg-teal-100 transition-colors"
             >
               <div className="flex items-center space-x-2">
@@ -91,7 +94,9 @@ const AddAssignment = ({ onBack }) => {
                 ) : (
                   <ChevronUp size={16} className="text-teal-600" />
                 )}
-                <span className="font-medium text-gray-900">🐾 Collection Product Details</span>
+                <span className="font-medium text-gray-900">
+                  🐾 Collection Product Details
+                </span>
               </div>
             </button>
 
@@ -112,13 +117,18 @@ const AddAssignment = ({ onBack }) => {
                 {/* Product Rows */}
                 <div className="border-l border-r border-b border-gray-200 rounded-b-lg">
                   {collectionProducts.map((product) => (
-                    <div key={product?.id} className="border-b border-gray-100 last:border-b-0 hover:bg-gray-50">
+                    <div
+                      key={product?.id}
+                      className="border-b border-gray-100 last:border-b-0 hover:bg-gray-50"
+                    >
                       <div className="grid grid-cols-12 gap-4 px-4 py-4 items-start">
                         {/* Checkbox */}
                         <div className="col-span-1 flex justify-center pt-2">
                           <input
                             type="checkbox"
-                            checked={selectedProducts.some(p => p?.id === product?.id)}
+                            checked={selectedProducts.some(
+                              (p) => p?.id === product?.id
+                            )}
                             onChange={() => handleProductSelect(product)}
                             className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                           />
@@ -145,41 +155,93 @@ const AddAssignment = ({ onBack }) => {
 
                         {/* Item Details */}
                         <div className="col-span-2 text-xs space-y-1">
-                          <div><strong>Lot No :</strong> {product?.lotNo}</div>
-                          <div><strong>Title :</strong> {product?.title}</div>
-                          <div><strong>Design No :</strong> {product?.designNo}</div>
+                          <div>
+                            <strong>Lot No :</strong> {product?.lotNo}
+                          </div>
+                          <div>
+                            <strong>Title :</strong> {product?.title}
+                          </div>
+                          <div>
+                            <strong>Design No :</strong> {product?.designNo}
+                          </div>
                         </div>
 
                         {/* Details */}
                         <div className="col-span-3 text-xs space-y-1">
-                          <div><strong>Style :</strong> {product?.details?.style}</div>
-                          <div><strong>Size :</strong> {product?.details?.size}</div>
-                          <div><strong>Category :</strong> {product?.details?.category}</div>
-                          <div><strong>Subcategory :</strong> {product?.details?.subcategory}</div>
-                          <div><strong>Weight :</strong> {product?.details?.weight}</div>
-                          <div><strong>Stk.Ledger :</strong> {product?.details?.stkLedger}</div>
+                          <div>
+                            <strong>Style :</strong> {product?.details?.style}
+                          </div>
+                          <div>
+                            <strong>Size :</strong> {product?.details?.size}
+                          </div>
+                          <div>
+                            <strong>Category :</strong>
+                            {product?.details?.category}
+                          </div>
+                          <div>
+                            <strong>Subcategory :</strong>
+                            {product?.details?.subcategory}
+                          </div>
+                          <div>
+                            <strong>Weight :</strong> {product?.details?.weight}
+                          </div>
+                          <div>
+                            <strong>Stk.Ledger :</strong>
+                            {product?.details?.stkLedger}
+                          </div>
                         </div>
 
                         {/* Weight */}
                         <div className="col-span-2 text-xs space-y-1">
-                          <div><strong>Gross :</strong> {product?.weight?.gross}</div>
-                          <div><strong>Stone :</strong> {product?.weight?.stone}</div>
-                          <div><strong>Other :</strong> {product?.weight?.other}</div>
-                          <div><strong>Net :</strong> {product?.weight?.net}</div>
-                          <div><strong>Pure :</strong> {product?.weight?.pure}</div>
-                          <div><strong>Pcs :</strong> {product?.weight?.pcs}</div>
-                          <div><strong>Qty :</strong> {product?.weight?.qty}</div>
+                          <div>
+                            <strong>Gross :</strong> {product?.weight?.gross}
+                          </div>
+                          <div>
+                            <strong>Stone :</strong> {product?.weight?.stone}
+                          </div>
+                          <div>
+                            <strong>Other :</strong> {product?.weight?.other}
+                          </div>
+                          <div>
+                            <strong>Net :</strong> {product?.weight?.net}
+                          </div>
+                          <div>
+                            <strong>Pure :</strong> {product?.weight?.pure}
+                          </div>
+                          <div>
+                            <strong>Pcs :</strong> {product?.weight?.pcs}
+                          </div>
+                          <div>
+                            <strong>Qty :</strong> {product?.weight?.qty}
+                          </div>
                         </div>
 
                         {/* Amount */}
                         <div className="col-span-2 text-xs space-y-1">
-                          <div><strong>Metal :</strong> {product?.amount?.metal}</div>
-                          <div><strong>Other :</strong> {product?.amount?.other}</div>
-                          <div><strong>Stone :</strong> {product?.amount?.stone}</div>
-                          <div><strong>Charge :</strong> {product?.amount?.charge}</div>
-                          <div><strong>Calculated Total :</strong> {product?.amount?.calculatedTotal}</div>
-                          <div><strong>Variable Total :</strong> {product?.amount?.variableTotal}</div>
-                          <div><strong>Estimated Total :</strong> {product?.amount?.estimatedTotal}</div>
+                          <div>
+                            <strong>Metal :</strong> {product?.amount?.metal}
+                          </div>
+                          <div>
+                            <strong>Other :</strong> {product?.amount?.other}
+                          </div>
+                          <div>
+                            <strong>Stone :</strong> {product?.amount?.stone}
+                          </div>
+                          <div>
+                            <strong>Charge :</strong> {product?.amount?.charge}
+                          </div>
+                          <div>
+                            <strong>Calculated Total :</strong>
+                            {product?.amount?.calculatedTotal}
+                          </div>
+                          <div>
+                            <strong>Variable Total :</strong>
+                            {product?.amount?.variableTotal}
+                          </div>
+                          <div>
+                            <strong>Estimated Total :</strong>
+                            {product?.amount?.estimatedTotal}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -192,7 +254,9 @@ const AddAssignment = ({ onBack }) => {
           {/* Selected Product Details Section */}
           <div className="bg-white rounded-xl shadow-lg border border-gray-200/50 overflow-hidden">
             <button
-              onClick={() => setSelectedProductsExpanded(!selectedProductsExpanded)}
+              onClick={() =>
+                setSelectedProductsExpanded(!selectedProductsExpanded)
+              }
               className="w-full bg-teal-50 border-b border-teal-200 px-6 py-4 flex items-center justify-between hover:bg-teal-100 transition-colors"
             >
               <div className="flex items-center space-x-2">
@@ -201,7 +265,9 @@ const AddAssignment = ({ onBack }) => {
                 ) : (
                   <ChevronUp size={16} className="text-teal-600" />
                 )}
-                <span className="font-medium text-gray-900">🐾 Selected Product Details</span>
+                <span className="font-medium text-gray-900">
+                  🐾 Selected Product Details
+                </span>
               </div>
             </button>
 
@@ -209,7 +275,10 @@ const AddAssignment = ({ onBack }) => {
               <div className="p-6">
                 {selectedProducts.length === 0 ? (
                   <div className="text-center py-8 text-gray-500">
-                    <p>No products selected. Please select products from the collection above.</p>
+                    <p>
+                      No products selected. Please select products from the
+                      collection above.
+                    </p>
                   </div>
                 ) : (
                   <div className="bg-gray-50 rounded-lg border border-gray-200">
@@ -221,9 +290,12 @@ const AddAssignment = ({ onBack }) => {
                       <div className="col-span-2">Amount</div>
                       <div className="col-span-1">Action</div>
                     </div>
-                    
+
                     {selectedProducts.map((product) => (
-                      <div key={product?.id} className="grid grid-cols-12 gap-4 px-4 py-4 items-start border-b border-gray-200 last:border-b-0">
+                      <div
+                        key={product?.id}
+                        className="grid grid-cols-12 gap-4 px-4 py-4 items-start border-b border-gray-200 last:border-b-0"
+                      >
                         <div className="col-span-2">
                           <div className="w-16 h-16 rounded-lg overflow-hidden bg-gray-100 border">
                             <img
@@ -234,8 +306,12 @@ const AddAssignment = ({ onBack }) => {
                           </div>
                         </div>
                         <div className="col-span-2 text-xs space-y-1">
-                          <div><strong>Lot No :</strong> {product?.lotNo}</div>
-                          <div><strong>Title :</strong> {product?.title}</div>
+                          <div>
+                            <strong>Lot No :</strong> {product?.lotNo}
+                          </div>
+                          <div>
+                            <strong>Title :</strong> {product?.title}
+                          </div>
                         </div>
                         <div className="col-span-3 text-xs">
                           <div>{product?.details?.category}</div>
@@ -265,7 +341,9 @@ const AddAssignment = ({ onBack }) => {
           {/* Create Collection Assignment Section */}
           <div className="bg-white rounded-xl shadow-lg border border-gray-200/50 overflow-hidden">
             <button
-              onClick={() => setCreateCollectionExpanded(!createCollectionExpanded)}
+              onClick={() =>
+                setCreateCollectionExpanded(!createCollectionExpanded)
+              }
               className="w-full bg-gray-100 border-b border-gray-200 px-6 py-4 flex items-center justify-between hover:bg-gray-200 transition-colors"
             >
               <div className="flex items-center space-x-2">
@@ -274,7 +352,9 @@ const AddAssignment = ({ onBack }) => {
                 ) : (
                   <ChevronUp size={16} className="text-gray-600" />
                 )}
-                <span className="font-medium text-gray-900">🐾 Create Collection assignment</span>
+                <span className="font-medium text-gray-900">
+                  🐾 Create Collection assignment
+                </span>
               </div>
             </button>
 
@@ -289,7 +369,9 @@ const AddAssignment = ({ onBack }) => {
                     <input
                       type="text"
                       value={formData.collectionTitle}
-                      onChange={(e) => handleInputChange("collectionTitle", e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("collectionTitle", e.target.value)
+                      }
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                       placeholder="Collection Title"
                     />
@@ -303,7 +385,9 @@ const AddAssignment = ({ onBack }) => {
                     <input
                       type="text"
                       value={formData.passwordCode}
-                      onChange={(e) => handleInputChange("passwordCode", e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("passwordCode", e.target.value)
+                      }
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                       placeholder="Password Code"
                     />
@@ -317,7 +401,9 @@ const AddAssignment = ({ onBack }) => {
                   </label>
                   <select
                     value={formData.status}
-                    onChange={(e) => handleInputChange("status", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("status", e.target.value)
+                    }
                     className="w-full md:w-64 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                   >
                     <option value="Active">Active</option>

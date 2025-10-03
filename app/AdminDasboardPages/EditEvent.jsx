@@ -12,10 +12,10 @@ const EditEvent = ({ onBack, eventId, eventData }) => {
     eventImages: null,
     status: "Active",
     showVideoDetails: false,
-    videos: []
+    videos: [],
   });
 
-  console.log(eventData,"eventDataeventData")
+  console.log(eventData, "eventDataeventData");
 
   // Initialize form with existing event data
   useEffect(() => {
@@ -30,53 +30,53 @@ const EditEvent = ({ onBack, eventId, eventData }) => {
         eventImages: null,
         status: eventData?.status || "Active",
         showVideoDetails: false,
-        videos: eventData?.videos || []
+        videos: eventData?.videos || [],
       });
     }
   }, [eventData]);
 
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
   };
 
   const handleFileChange = (field, e) => {
-    const file = field === 'eventImages' ? e.target.files : e.target.files[0];
-    setFormData(prev => ({
+    const file = field === "eventImages" ? e.target.files : e.target.files[0];
+    setFormData((prev) => ({
       ...prev,
-      [field]: file
+      [field]: file,
     }));
   };
 
   const toggleVideoDetails = () => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      showVideoDetails: !prev.showVideoDetails
+      showVideoDetails: !prev.showVideoDetails,
     }));
   };
 
   const addVideo = () => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      videos: [...prev.videos, { id: Date.now(), title: "", url: "" }]
+      videos: [...prev.videos, { id: Date.now(), title: "", url: "" }],
     }));
   };
 
   const removeVideo = (videoId) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      videos: prev.videos.filter(video => video.id !== videoId)
+      videos: prev.videos.filter((video) => video.id !== videoId),
     }));
   };
 
   const updateVideo = (videoId, field, value) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      videos: prev.videos.map(video =>
+      videos: prev.videos.map((video) =>
         video.id === videoId ? { ...video, [field]: value } : video
-      )
+      ),
     }));
   };
 
@@ -147,7 +147,9 @@ const EditEvent = ({ onBack, eventId, eventData }) => {
                 </label>
                 <textarea
                   value={formData.description}
-                  onChange={(e) => handleInputChange("description", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("description", e.target.value)
+                  }
                   rows={4}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"
                   placeholder="Enter event description"
@@ -163,7 +165,9 @@ const EditEvent = ({ onBack, eventId, eventData }) => {
                   <input
                     type="datetime-local"
                     value={formData.startTime}
-                    onChange={(e) => handleInputChange("startTime", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("startTime", e.target.value)
+                    }
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     placeholder="Start Time"
                   />
@@ -175,7 +179,9 @@ const EditEvent = ({ onBack, eventId, eventData }) => {
                   <input
                     type="datetime-local"
                     value={formData.endTime}
-                    onChange={(e) => handleInputChange("endTime", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("endTime", e.target.value)
+                    }
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     placeholder="End Time"
                   />
@@ -252,7 +258,9 @@ const EditEvent = ({ onBack, eventId, eventData }) => {
                       name="status"
                       value="Active"
                       checked={formData.status === "Active"}
-                      onChange={(e) => handleInputChange("status", e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("status", e.target.value)
+                      }
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                     />
                     <span className="ml-2 text-sm text-gray-700">Active</span>
@@ -263,7 +271,9 @@ const EditEvent = ({ onBack, eventId, eventData }) => {
                       name="status"
                       value="Inactive"
                       checked={formData.status === "Inactive"}
-                      onChange={(e) => handleInputChange("status", e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("status", e.target.value)
+                      }
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                     />
                     <span className="ml-2 text-sm text-gray-700">Inactive</span>
@@ -279,13 +289,15 @@ const EditEvent = ({ onBack, eventId, eventData }) => {
                     onClick={toggleVideoDetails}
                     className="flex items-center space-x-2 text-teal-600 hover:text-teal-700 font-medium"
                   >
-                    <ChevronDown 
-                      size={16} 
-                      className={`transform transition-transform ${formData.showVideoDetails ? 'rotate-180' : ''}`} 
+                    <ChevronDown
+                      size={16}
+                      className={`transform transition-transform ${
+                        formData.showVideoDetails ? "rotate-180" : ""
+                      }`}
                     />
                     <span>🛒 Video Details</span>
                   </button>
-                  
+
                   <button
                     type="button"
                     onClick={addVideo}
@@ -299,15 +311,22 @@ const EditEvent = ({ onBack, eventId, eventData }) => {
                 {formData.showVideoDetails && (
                   <div className="bg-gray-50 rounded-lg p-4">
                     <p className="text-sm text-gray-600 mb-4">Video Info</p>
-                    
+
                     {formData.videos.length === 0 ? (
-                      <p className="text-center text-gray-500 py-8">No videos added yet. Click "Add Video" to get started.</p>
+                      <p className="text-center text-gray-500 py-8">
+                        No videos added yet. Click "Add Video" to get started.
+                      </p>
                     ) : (
                       <div className="space-y-4">
                         {formData.videos.map((video) => (
-                          <div key={video?.id} className="bg-white rounded-lg p-4 border border-gray-200">
+                          <div
+                            key={video?.id}
+                            className="bg-white rounded-lg p-4 border border-gray-200"
+                          >
                             <div className="flex items-center justify-between mb-3">
-                              <h4 className="font-medium text-gray-900">Video {formData.videos.indexOf(video) + 1}</h4>
+                              <h4 className="font-medium text-gray-900">
+                                Video {formData.videos.indexOf(video) + 1}
+                              </h4>
                               <button
                                 onClick={() => removeVideo(video?.id)}
                                 className="text-red-500 hover:text-red-700 text-sm"
@@ -323,7 +342,13 @@ const EditEvent = ({ onBack, eventId, eventData }) => {
                                 <input
                                   type="text"
                                   value={video.title}
-                                  onChange={(e) => updateVideo(video?.id, 'title', e.target.value)}
+                                  onChange={(e) =>
+                                    updateVideo(
+                                      video?.id,
+                                      "title",
+                                      e.target.value
+                                    )
+                                  }
                                   className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
                                   placeholder="Enter video title"
                                 />
@@ -335,7 +360,13 @@ const EditEvent = ({ onBack, eventId, eventData }) => {
                                 <input
                                   type="url"
                                   value={video?.url}
-                                  onChange={(e) => updateVideo(video?.id, 'url', e.target.value)}
+                                  onChange={(e) =>
+                                    updateVideo(
+                                      video?.id,
+                                      "url",
+                                      e.target.value
+                                    )
+                                  }
                                   className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
                                   placeholder="Enter video URL"
                                 />

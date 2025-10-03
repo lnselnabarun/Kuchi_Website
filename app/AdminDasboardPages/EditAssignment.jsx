@@ -7,12 +7,14 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
     passwordCode: "202cb962ac59075b",
   });
 
-  const [collectionProductsExpanded, setCollectionProductsExpanded] = useState(true);
-  const [selectedProductsExpanded, setSelectedProductsExpanded] = useState(true);
+  const [collectionProductsExpanded, setCollectionProductsExpanded] =
+    useState(true);
+  const [selectedProductsExpanded, setSelectedProductsExpanded] =
+    useState(true);
   const [productSearchTerm, setProductSearchTerm] = useState("");
 
   // Sample collection products data
-  
+
   const collectionProducts = [
     {
       id: "SW9K0527",
@@ -26,7 +28,7 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
         category: "ICATEGORY",
         subcategory: "SWAROV.HANDMADE",
         weight: "-",
-        stkLedger: "09 KARAT SWAROVSKI ORNAMENTS"
+        stkLedger: "09 KARAT SWAROVSKI ORNAMENTS",
       },
       weight: {
         gross: "11.090",
@@ -35,7 +37,7 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
         net: "9.190",
         pure: "3.544",
         pcs: "1",
-        qty: "2"
+        qty: "2",
       },
       amount: {
         metal: "12866.00",
@@ -44,9 +46,9 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
         charge: "9190.00",
         calculatedTotal: "23006.00",
         variableTotal: "38400.00",
-        estimatedTotal: "32000.00"
-      }
-    }
+        estimatedTotal: "32000.00",
+      },
+    },
   ];
 
   // Sample selected products data
@@ -63,7 +65,7 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
         category: "ICATEGORY",
         subcategory: "SWAROV.HANDMADE",
         weight: "-",
-        stkLedger: "09 KARAT SWAROVSKI ORNAMENTS"
+        stkLedger: "09 KARAT SWAROVSKI ORNAMENTS",
       },
       weight: {
         gross: "17.210",
@@ -72,7 +74,7 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
         net: "6.380",
         pure: "2.461",
         pcs: "1",
-        qty: "2"
+        qty: "2",
       },
       amount: {
         metal: "7383.00",
@@ -81,9 +83,9 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
         charge: "6380.00",
         calculatedTotal: "20016.00",
         variableTotal: "94800.00",
-        estimatedTotal: "79000.00"
+        estimatedTotal: "79000.00",
       },
-      selected: true
+      selected: true,
     },
     {
       id: "SW9K0108",
@@ -97,7 +99,7 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
         category: "ICATEGORY",
         subcategory: "SWAROV.HANDMADE",
         weight: "-",
-        stkLedger: "09 KARAT SWAROVSKI ORNAMENTS"
+        stkLedger: "09 KARAT SWAROVSKI ORNAMENTS",
       },
       weight: {
         gross: "28.910",
@@ -106,7 +108,7 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
         net: "12.860",
         pure: "4.960",
         pcs: "1",
-        qty: "2"
+        qty: "2",
       },
       amount: {
         metal: "24819.80",
@@ -115,16 +117,16 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
         charge: "1363160.00",
         calculatedTotal: "1397402.80",
         variableTotal: "127200.00",
-        estimatedTotal: "106000.00"
+        estimatedTotal: "106000.00",
       },
-      selected: true
-    }
+      selected: true,
+    },
   ]);
 
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
   };
 
@@ -137,8 +139,8 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
   };
 
   const handleProductToggle = (productId) => {
-    setSelectedProducts(prev =>
-      prev.map(product =>
+    setSelectedProducts((prev) =>
+      prev.map((product) =>
         product.id === productId
           ? { ...product, selected: !product.selected }
           : product
@@ -146,9 +148,10 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
     );
   };
 
-  const filteredCollectionProducts = collectionProducts.filter(product =>
-    product.title.toLowerCase().includes(productSearchTerm.toLowerCase()) ||
-    product.lotNo.toLowerCase().includes(productSearchTerm.toLowerCase())
+  const filteredCollectionProducts = collectionProducts.filter(
+    (product) =>
+      product.title.toLowerCase().includes(productSearchTerm.toLowerCase()) ||
+      product.lotNo.toLowerCase().includes(productSearchTerm.toLowerCase())
   );
 
   return (
@@ -156,20 +159,18 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
       {/* Header */}
       <div className="bg-white/80 backdrop-blur-lg shadow-sm border-b border-gray-200/50 px-6 py-4">
         <div className="flex items-center justify-between">
-        <button
+          <button
             onClick={onBack}
             className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
           >
             Back to Assignment List
           </button>
-         
         </div>
       </div>
 
       {/* Main Content */}
       <div className="flex-1 p-6 overflow-y-auto">
         <div className="max-w-full mx-auto space-y-6">
-          
           {/* Form Fields */}
           <div className="bg-white rounded-xl shadow-lg border border-gray-200/50 p-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -180,7 +181,9 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
                 <input
                   type="text"
                   value={formData.collectionTitle}
-                  onChange={(e) => handleInputChange("collectionTitle", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("collectionTitle", e.target.value)
+                  }
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                 />
               </div>
@@ -191,10 +194,14 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
                 <input
                   type="text"
                   value={formData.passwordCode}
-                  onChange={(e) => handleInputChange("passwordCode", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("passwordCode", e.target.value)
+                  }
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                 />
-                <p className="text-sm text-gray-500 mt-1">(If blank passcode will be same)</p>
+                <p className="text-sm text-gray-500 mt-1">
+                  (If blank passcode will be same)
+                </p>
               </div>
             </div>
           </div>
@@ -202,7 +209,9 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
           {/* Collection Product Details Section */}
           <div className="bg-white rounded-xl shadow-lg border border-gray-200/50 overflow-hidden">
             <button
-              onClick={() => setCollectionProductsExpanded(!collectionProductsExpanded)}
+              onClick={() =>
+                setCollectionProductsExpanded(!collectionProductsExpanded)
+              }
               className="w-full bg-teal-50 border-b border-teal-200 px-6 py-4 flex items-center justify-between hover:bg-teal-100 transition-colors"
             >
               <div className="flex items-center space-x-2">
@@ -211,7 +220,9 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
                 ) : (
                   <ChevronUp size={16} className="text-teal-600" />
                 )}
-                <span className="font-medium text-gray-900">🐾 Collection Product Details</span>
+                <span className="font-medium text-gray-900">
+                  🐾 Collection Product Details
+                </span>
               </div>
             </button>
 
@@ -220,7 +231,10 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
                 {/* Search */}
                 <div className="mb-4 flex justify-end">
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
+                    <Search
+                      className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                      size={16}
+                    />
                     <input
                       type="text"
                       value={productSearchTerm}
@@ -245,7 +259,10 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
                 {/* Product Row */}
                 <div className="border-l border-r border-b border-gray-200 rounded-b-lg">
                   {filteredCollectionProducts.map((product) => (
-                    <div key={product?.id} className="border-b border-gray-100 last:border-b-0 hover:bg-gray-50">
+                    <div
+                      key={product?.id}
+                      className="border-b border-gray-100 last:border-b-0 hover:bg-gray-50"
+                    >
                       <div className="grid grid-cols-12 gap-4 px-4 py-4 items-start">
                         {/* Product Image */}
                         <div className="col-span-2">
@@ -268,41 +285,92 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
 
                         {/* Item Details */}
                         <div className="col-span-2 text-xs space-y-1">
-                          <div><strong>Lot No :</strong> {product?.lotNo}</div>
-                          <div><strong>{product?.title}</strong></div>
-                          <div><strong>Design No :</strong> {product?.designNo}</div>
+                          <div>
+                            <strong>Lot No :</strong> {product?.lotNo}
+                          </div>
+                          <div>
+                            <strong>{product?.title}</strong>
+                          </div>
+                          <div>
+                            <strong>Design No :</strong> {product?.designNo}
+                          </div>
                         </div>
 
                         {/* Details */}
                         <div className="col-span-3 text-xs space-y-1">
-                          <div><strong>Style :</strong> {product?.details?.style}</div>
-                          <div><strong>Size :</strong> {product?.details?.size}</div>
-                          <div><strong>Category :</strong> {product?.details?.category}</div>
-                          <div><strong>{product?.details?.subcategory}</strong></div>
-                          <div><strong>Weight :</strong> {product?.details?.weight}</div>
-                          <div><strong>Stk.Ledger :</strong> {product?.details?.stkLedger}</div>
+                          <div>
+                            <strong>Style :</strong> {product?.details?.style}
+                          </div>
+                          <div>
+                            <strong>Size :</strong> {product?.details?.size}
+                          </div>
+                          <div>
+                            <strong>Category :</strong>{" "}
+                            {product?.details?.category}
+                          </div>
+                          <div>
+                            <strong>{product?.details?.subcategory}</strong>
+                          </div>
+                          <div>
+                            <strong>Weight :</strong> {product?.details?.weight}
+                          </div>
+                          <div>
+                            <strong>Stk.Ledger :</strong>{" "}
+                            {product?.details?.stkLedger}
+                          </div>
                         </div>
 
                         {/* Weight */}
                         <div className="col-span-2 text-xs space-y-1">
-                          <div><strong>Gross :</strong> {product?.weight?.gross}</div>
-                          <div><strong>Stone :</strong> {product?.weight?.stone}</div>
-                          <div><strong>Other :</strong> {product?.weight?.other}</div>
-                          <div><strong>Net :</strong> {product?.weight?.net}</div>
-                          <div><strong>Pure :</strong> {product?.weight?.pure}</div>
-                          <div><strong>Pcs :</strong> {product?.weight?.pcs}</div>
-                          <div><strong>Qty :</strong> {product?.weight?.qty}</div>
+                          <div>
+                            <strong>Gross :</strong> {product?.weight?.gross}
+                          </div>
+                          <div>
+                            <strong>Stone :</strong> {product?.weight?.stone}
+                          </div>
+                          <div>
+                            <strong>Other :</strong> {product?.weight?.other}
+                          </div>
+                          <div>
+                            <strong>Net :</strong> {product?.weight?.net}
+                          </div>
+                          <div>
+                            <strong>Pure :</strong> {product?.weight?.pure}
+                          </div>
+                          <div>
+                            <strong>Pcs :</strong> {product?.weight?.pcs}
+                          </div>
+                          <div>
+                            <strong>Qty :</strong> {product?.weight?.qty}
+                          </div>
                         </div>
 
                         {/* Amount */}
                         <div className="col-span-3 text-xs space-y-1">
-                          <div><strong>Metal :</strong> {product?.amount?.metal}</div>
-                          <div><strong>Other :</strong> {product?.amount?.other}</div>
-                          <div><strong>Stone :</strong> {product?.amount?.stone}</div>
-                          <div><strong>Charge :</strong> {product?.amount?.charge}</div>
-                          <div><strong>Calculated Total :</strong> {product?.amount?.calculatedTotal}</div>
-                          <div><strong>Variable Total :</strong> {product?.amount?.variableTotal} ▼</div>
-                          <div><strong>Estimated Total :</strong> {product?.amount?.estimatedTotal}</div>
+                          <div>
+                            <strong>Metal :</strong> {product?.amount?.metal}
+                          </div>
+                          <div>
+                            <strong>Other :</strong> {product?.amount?.other}
+                          </div>
+                          <div>
+                            <strong>Stone :</strong> {product?.amount?.stone}
+                          </div>
+                          <div>
+                            <strong>Charge :</strong> {product?.amount?.charge}
+                          </div>
+                          <div>
+                            <strong>Calculated Total :</strong>{" "}
+                            {product?.amount?.calculatedTotal}
+                          </div>
+                          <div>
+                            <strong>Variable Total :</strong>{" "}
+                            {product?.amount?.variableTotal} ▼
+                          </div>
+                          <div>
+                            <strong>Estimated Total :</strong>{" "}
+                            {product?.amount?.estimatedTotal}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -315,7 +383,9 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
           {/* Selected Product Details Section */}
           <div className="bg-white rounded-xl shadow-lg border border-gray-200/50 overflow-hidden">
             <button
-              onClick={() => setSelectedProductsExpanded(!selectedProductsExpanded)}
+              onClick={() =>
+                setSelectedProductsExpanded(!selectedProductsExpanded)
+              }
               className="w-full bg-teal-50 border-b border-teal-200 px-6 py-4 flex items-center justify-between hover:bg-teal-100 transition-colors"
             >
               <div className="flex items-center space-x-2">
@@ -324,7 +394,9 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
                 ) : (
                   <ChevronUp size={16} className="text-teal-600" />
                 )}
-                <span className="font-medium text-gray-900">🐾 Selected Product Details</span>
+                <span className="font-medium text-gray-900">
+                  🐾 Selected Product Details
+                </span>
               </div>
             </button>
 
@@ -345,7 +417,10 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
                 {/* Product Rows */}
                 <div className="border-l border-r border-b border-gray-200 rounded-b-lg">
                   {selectedProducts.map((product) => (
-                    <div key={product?.id} className="border-b border-gray-100 last:border-b-0 hover:bg-gray-50">
+                    <div
+                      key={product?.id}
+                      className="border-b border-gray-100 last:border-b-0 hover:bg-gray-50"
+                    >
                       <div className="grid grid-cols-12 gap-4 px-4 py-4 items-start">
                         {/* Product Image */}
                         <div className="col-span-2">
@@ -368,41 +443,92 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
 
                         {/* Item Details */}
                         <div className="col-span-2 text-xs space-y-1">
-                          <div><strong>Lot No :</strong> {product?.lotNo}</div>
-                          <div><strong>{product?.title}</strong></div>
-                          <div><strong>Design No :</strong> {product?.designNo}</div>
+                          <div>
+                            <strong>Lot No :</strong> {product?.lotNo}
+                          </div>
+                          <div>
+                            <strong>{product?.title}</strong>
+                          </div>
+                          <div>
+                            <strong>Design No :</strong> {product?.designNo}
+                          </div>
                         </div>
 
                         {/* Details */}
                         <div className="col-span-2 text-xs space-y-1">
-                          <div><strong>Style :</strong> {product?.details?.style}</div>
-                          <div><strong>Size :</strong> {product?.details?.size}</div>
-                          <div><strong>Category :</strong> {product?.details?.category}</div>
-                          <div><strong>{product?.details?.subcategory}</strong></div>
-                          <div><strong>Weight :</strong> {product?.details?.weight}</div>
-                          <div><strong>Stk Ledger :</strong> {product?.details?.stkLedger}</div>
+                          <div>
+                            <strong>Style :</strong> {product?.details?.style}
+                          </div>
+                          <div>
+                            <strong>Size :</strong> {product?.details?.size}
+                          </div>
+                          <div>
+                            <strong>Category :</strong>{" "}
+                            {product?.details?.category}
+                          </div>
+                          <div>
+                            <strong>{product?.details?.subcategory}</strong>
+                          </div>
+                          <div>
+                            <strong>Weight :</strong> {product?.details?.weight}
+                          </div>
+                          <div>
+                            <strong>Stk Ledger :</strong>{" "}
+                            {product?.details?.stkLedger}
+                          </div>
                         </div>
 
                         {/* Weight */}
                         <div className="col-span-2 text-xs space-y-1">
-                          <div><strong>Gross :</strong> {product?.weight?.gross}</div>
-                          <div><strong>Stone :</strong> {product?.weight?.stone}</div>
-                          <div><strong>Other :</strong> {product?.weight?.other}</div>
-                          <div><strong>Net :</strong> {product?.weight?.net}</div>
-                          <div><strong>Pure :</strong> {product?.weight?.pure}</div>
-                          <div><strong>Pcs :</strong> {product?.weight?.pcs}</div>
-                          <div><strong>Qty :</strong> {product?.weight?.qty}</div>
+                          <div>
+                            <strong>Gross :</strong> {product?.weight?.gross}
+                          </div>
+                          <div>
+                            <strong>Stone :</strong> {product?.weight?.stone}
+                          </div>
+                          <div>
+                            <strong>Other :</strong> {product?.weight?.other}
+                          </div>
+                          <div>
+                            <strong>Net :</strong> {product?.weight?.net}
+                          </div>
+                          <div>
+                            <strong>Pure :</strong> {product?.weight?.pure}
+                          </div>
+                          <div>
+                            <strong>Pcs :</strong> {product?.weight?.pcs}
+                          </div>
+                          <div>
+                            <strong>Qty :</strong> {product?.weight?.qty}
+                          </div>
                         </div>
 
                         {/* Amount */}
                         <div className="col-span-3 text-xs space-y-1">
-                          <div><strong>Metal :</strong> {product?.amount?.metal}</div>
-                          <div><strong>Other :</strong> {product?.amount?.other}</div>
-                          <div><strong>Stone :</strong> {product?.amount?.stone}</div>
-                          <div><strong>Charge :</strong> {product?.amount?.charge}</div>
-                          <div><strong>Calculated Total :</strong> {product?.amount?.calculatedTotal}</div>
-                          <div><strong>Variable Total :</strong> {product?.amount?.variableTotal} ▼</div>
-                          <div><strong>Estimated Total :</strong> {product?.amount?.estimatedTotal}</div>
+                          <div>
+                            <strong>Metal :</strong> {product?.amount?.metal}
+                          </div>
+                          <div>
+                            <strong>Other :</strong> {product?.amount?.other}
+                          </div>
+                          <div>
+                            <strong>Stone :</strong> {product?.amount?.stone}
+                          </div>
+                          <div>
+                            <strong>Charge :</strong> {product?.amount?.charge}
+                          </div>
+                          <div>
+                            <strong>Calculated Total :</strong>{" "}
+                            {product?.amount?.calculatedTotal}
+                          </div>
+                          <div>
+                            <strong>Variable Total :</strong>{" "}
+                            {product?.amount?.variableTotal} ▼
+                          </div>
+                          <div>
+                            <strong>Estimated Total :</strong>{" "}
+                            {product?.amount?.estimatedTotal}
+                          </div>
                         </div>
 
                         {/* Action */}

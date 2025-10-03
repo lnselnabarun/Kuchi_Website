@@ -8,7 +8,7 @@ const EditUser = ({ onBack, userId, userData }) => {
     password: "",
     otherDetails: "",
     userGroup: "",
-    status: "Active"
+    status: "Active",
   });
 
   // Initialize form with existing user data
@@ -20,15 +20,15 @@ const EditUser = ({ onBack, userId, userData }) => {
         password: userData.password || "",
         otherDetails: userData.otherDetails || "",
         userGroup: userData.userGroup || "",
-        status: userData.status || "Active"
+        status: userData.status || "Active",
       });
     }
   }, [userData]);
 
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
   };
 
@@ -74,7 +74,9 @@ const EditUser = ({ onBack, userId, userData }) => {
                   <input
                     type="text"
                     value={formData.username}
-                    onChange={(e) => handleInputChange("username", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("username", e.target.value)
+                    }
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     placeholder="Enter username"
                   />
@@ -88,7 +90,9 @@ const EditUser = ({ onBack, userId, userData }) => {
                   <input
                     type="email"
                     value={formData.emailId}
-                    onChange={(e) => handleInputChange("emailId", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("emailId", e.target.value)
+                    }
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     placeholder="Enter email address"
                   />
@@ -102,7 +106,9 @@ const EditUser = ({ onBack, userId, userData }) => {
                   <input
                     type="password"
                     value={formData.password}
-                    onChange={(e) => handleInputChange("password", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("password", e.target.value)
+                    }
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     placeholder="Enter password"
                   />
@@ -115,7 +121,9 @@ const EditUser = ({ onBack, userId, userData }) => {
                   </label>
                   <textarea
                     value={formData.otherDetails}
-                    onChange={(e) => handleInputChange("otherDetails", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("otherDetails", e.target.value)
+                    }
                     rows={4}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"
                     placeholder="Enter other details"
@@ -130,7 +138,9 @@ const EditUser = ({ onBack, userId, userData }) => {
                   <input
                     type="text"
                     value={formData.userGroup}
-                    onChange={(e) => handleInputChange("userGroup", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("userGroup", e.target.value)
+                    }
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     placeholder="Enter user group"
                   />
@@ -148,7 +158,9 @@ const EditUser = ({ onBack, userId, userData }) => {
                         name="status"
                         value="Active"
                         checked={formData.status === "Active"}
-                        onChange={(e) => handleInputChange("status", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("status", e.target.value)
+                        }
                         className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                       />
                       <span className="ml-2 text-sm text-gray-700">Active</span>
@@ -159,10 +171,14 @@ const EditUser = ({ onBack, userId, userData }) => {
                         name="status"
                         value="Inactive"
                         checked={formData.status === "Inactive"}
-                        onChange={(e) => handleInputChange("status", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("status", e.target.value)
+                        }
                         className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                       />
-                      <span className="ml-2 text-sm text-gray-700">Inactive</span>
+                      <span className="ml-2 text-sm text-gray-700">
+                        Inactive
+                      </span>
                     </label>
                   </div>
                 </div>
@@ -189,39 +205,47 @@ const EditUser = ({ onBack, userId, userData }) => {
                 <div className="text-center text-gray-500 w-full">
                   <User size={64} className="mx-auto mb-4 text-gray-400" />
                   <p className="text-lg font-medium mb-2">User Information</p>
-                  
+
                   {formData.username ? (
                     <div className="mt-4 p-4 bg-white rounded-lg border border-gray-200 text-left space-y-2">
                       <div className="text-sm">
-                        <strong className="text-gray-700">Username:</strong> 
-                        <span className="ml-2 text-gray-900">{formData.username}</span>
+                        <strong className="text-gray-700">Username:</strong>
+                        <span className="ml-2 text-gray-900">
+                          {formData.username}
+                        </span>
                       </div>
-                      
+
                       {formData.emailId && (
                         <div className="text-sm">
-                          <strong className="text-gray-700">Email:</strong> 
-                          <span className="ml-2 text-gray-900">{formData.emailId}</span>
+                          <strong className="text-gray-700">Email:</strong>
+                          <span className="ml-2 text-gray-900">
+                            {formData.emailId}
+                          </span>
                         </div>
                       )}
-                      
+
                       {formData.userGroup && (
                         <div className="text-sm">
-                          <strong className="text-gray-700">Group:</strong> 
-                          <span className="ml-2 text-gray-900">{formData.userGroup}</span>
+                          <strong className="text-gray-700">Group:</strong>
+                          <span className="ml-2 text-gray-900">
+                            {formData.userGroup}
+                          </span>
                         </div>
                       )}
-                      
+
                       <div className="text-sm">
-                        <strong className="text-gray-700">Status:</strong> 
-                        <span className={`ml-2 px-2 py-1 rounded-full text-xs ${
-                          formData.status === 'Active' 
-                            ? 'bg-green-100 text-green-800' 
-                            : 'bg-red-100 text-red-800'
-                        }`}>
+                        <strong className="text-gray-700">Status:</strong>
+                        <span
+                          className={`ml-2 px-2 py-1 rounded-full text-xs ${
+                            formData.status === "Active"
+                              ? "bg-green-100 text-green-800"
+                              : "bg-red-100 text-red-800"
+                          }`}
+                        >
                           {formData.status}
                         </span>
                       </div>
-                      
+
                       {formData.otherDetails && (
                         <div className="text-sm pt-2 border-t border-gray-200">
                           <strong className="text-gray-700">Details:</strong>

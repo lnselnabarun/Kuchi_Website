@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Save, User } from "lucide-react";
+import { Save, User } from "lucide-react";
 
 const AddNewUser = ({ onBack }) => {
   const [userData, setUserData] = useState({
@@ -8,13 +8,13 @@ const AddNewUser = ({ onBack }) => {
     password: "",
     otherDetails: "",
     userGroup: "",
-    status: "Active"
+    status: "Active",
   });
 
   const handleInputChange = (field, value) => {
-    setUserData(prev => ({
+    setUserData((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
   };
 
@@ -25,11 +25,9 @@ const AddNewUser = ({ onBack }) => {
 
   return (
     <div className="flex flex-col h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
-
       {/* Main Content */}
       <div className="flex-1 p-6 overflow-y-auto">
         <div className="max-w-4xl mx-auto">
-
           {/* Form Content */}
           <div className="bg-white rounded-xl shadow-lg border border-gray-200/50 p-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -43,7 +41,9 @@ const AddNewUser = ({ onBack }) => {
                   <input
                     type="text"
                     value={userData.username}
-                    onChange={(e) => handleInputChange("username", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("username", e.target.value)
+                    }
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     placeholder="Enter username"
                   />
@@ -57,7 +57,9 @@ const AddNewUser = ({ onBack }) => {
                   <input
                     type="email"
                     value={userData.emailId}
-                    onChange={(e) => handleInputChange("emailId", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("emailId", e.target.value)
+                    }
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     placeholder="Enter email address"
                   />
@@ -71,7 +73,9 @@ const AddNewUser = ({ onBack }) => {
                   <input
                     type="password"
                     value={userData.password}
-                    onChange={(e) => handleInputChange("password", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("password", e.target.value)
+                    }
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     placeholder="Enter password"
                   />
@@ -84,7 +88,9 @@ const AddNewUser = ({ onBack }) => {
                   </label>
                   <textarea
                     value={userData.otherDetails}
-                    onChange={(e) => handleInputChange("otherDetails", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("otherDetails", e.target.value)
+                    }
                     rows={4}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"
                     placeholder="Enter other details"
@@ -99,7 +105,9 @@ const AddNewUser = ({ onBack }) => {
                   <input
                     type="text"
                     value={userData.userGroup}
-                    onChange={(e) => handleInputChange("userGroup", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("userGroup", e.target.value)
+                    }
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     placeholder="Enter user group"
                   />
@@ -117,7 +125,9 @@ const AddNewUser = ({ onBack }) => {
                         name="status"
                         value="Active"
                         checked={userData.status === "Active"}
-                        onChange={(e) => handleInputChange("status", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("status", e.target.value)
+                        }
                         className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                       />
                       <span className="ml-2 text-sm text-gray-700">Active</span>
@@ -128,10 +138,14 @@ const AddNewUser = ({ onBack }) => {
                         name="status"
                         value="Inactive"
                         checked={userData.status === "Inactive"}
-                        onChange={(e) => handleInputChange("status", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("status", e.target.value)
+                        }
                         className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                       />
-                      <span className="ml-2 text-sm text-gray-700">Inactive</span>
+                      <span className="ml-2 text-sm text-gray-700">
+                        Inactive
+                      </span>
                     </label>
                   </div>
                 </div>
@@ -154,10 +168,22 @@ const AddNewUser = ({ onBack }) => {
                   <p className="text-sm">User information will appear here</p>
                   {userData.username && (
                     <div className="mt-4 p-4 bg-white rounded-lg border border-gray-200 text-left">
-                      <p className="text-sm"><strong>Username:</strong> {userData.username}</p>
-                      {userData.emailId && <p className="text-sm"><strong>Email:</strong> {userData.emailId}</p>}
-                      {userData.userGroup && <p className="text-sm"><strong>Group:</strong> {userData.userGroup}</p>}
-                      <p className="text-sm"><strong>Status:</strong> {userData.status}</p>
+                      <p className="text-sm">
+                        <strong>Username:</strong> {userData.username}
+                      </p>
+                      {userData.emailId && (
+                        <p className="text-sm">
+                          <strong>Email:</strong> {userData.emailId}
+                        </p>
+                      )}
+                      {userData.userGroup && (
+                        <p className="text-sm">
+                          <strong>Group:</strong> {userData.userGroup}
+                        </p>
+                      )}
+                      <p className="text-sm">
+                        <strong>Status:</strong> {userData.status}
+                      </p>
                     </div>
                   )}
                 </div>

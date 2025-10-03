@@ -8,7 +8,7 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
     for: "Desktop",
     mainImage: null,
     currentImageUrl: null,
-    status: "Active"
+    status: "Active",
   });
 
   // Initialize form with existing banner data
@@ -20,25 +20,25 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
         for: bannerData.for || "Desktop",
         mainImage: null,
         currentImageUrl: bannerData.image || null,
-        status: bannerData.status || "Active"
+        status: bannerData.status || "Active",
       });
     }
   }, [bannerData]);
 
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
   };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setFormData(prev => ({
+      setFormData((prev) => ({
         ...prev,
         mainImage: file,
-        currentImageUrl: URL.createObjectURL(file)
+        currentImageUrl: URL.createObjectURL(file),
       }));
     }
   };
@@ -57,7 +57,6 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
 
   return (
     <div className="flex flex-col h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
-
       {/* Main Content */}
       <div className="bg-white/80 backdrop-blur-lg shadow-sm border-b border-gray-200/50 px-6 py-4">
         <div className="flex items-center space-x-4">
@@ -83,7 +82,9 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
                   <input
                     type="number"
                     value={formData.priority}
-                    onChange={(e) => handleInputChange("priority", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("priority", e.target.value)
+                    }
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     placeholder="Enter priority number"
                   />
@@ -101,10 +102,14 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
                         name="for"
                         value="Desktop"
                         checked={formData.for === "Desktop"}
-                        onChange={(e) => handleInputChange("for", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("for", e.target.value)
+                        }
                         className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                       />
-                      <span className="ml-2 text-sm text-gray-700">Desktop</span>
+                      <span className="ml-2 text-sm text-gray-700">
+                        Desktop
+                      </span>
                     </label>
                     <label className="flex items-center">
                       <input
@@ -112,7 +117,9 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
                         name="for"
                         value="Mobile"
                         checked={formData.for === "Mobile"}
-                        onChange={(e) => handleInputChange("for", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("for", e.target.value)
+                        }
                         className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                       />
                       <span className="ml-2 text-sm text-gray-700">Mobile</span>
@@ -132,7 +139,9 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
                         name="status"
                         value="Active"
                         checked={formData.status === "Active"}
-                        onChange={(e) => handleInputChange("status", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("status", e.target.value)
+                        }
                         className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                       />
                       <span className="ml-2 text-sm text-gray-700">Active</span>
@@ -143,10 +152,14 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
                         name="status"
                         value="Inactive"
                         checked={formData.status === "Inactive"}
-                        onChange={(e) => handleInputChange("status", e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("status", e.target.value)
+                        }
                         className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                       />
-                      <span className="ml-2 text-sm text-gray-700">Inactive</span>
+                      <span className="ml-2 text-sm text-gray-700">
+                        Inactive
+                      </span>
                     </label>
                   </div>
                 </div>
@@ -175,7 +188,7 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
                   <label className="block text-sm font-medium text-gray-700 mb-4">
                     Main Image
                   </label>
-                  
+
                   {/* Current Image Display */}
                   <div className="mb-4">
                     {formData.currentImageUrl ? (
@@ -197,7 +210,10 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
                     ) : (
                       <div className="w-full h-64 rounded-lg bg-gray-100 flex items-center justify-center">
                         <div className="text-center text-gray-500">
-                          <Upload size={48} className="mx-auto mb-4 text-gray-400" />
+                          <Upload
+                            size={48}
+                            className="mx-auto mb-4 text-gray-400"
+                          />
                           <p>No image available</p>
                         </div>
                       </div>
@@ -223,7 +239,7 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
                       </div>
                     </label>
                   </div>
-                  
+
                   {!formData.mainImage && (
                     <p className="text-sm text-gray-500 mt-2">No file chosen</p>
                   )}

@@ -5,7 +5,7 @@ import EditEvent from "./EditEvent";
 const AllEventList = ({ onBack }) => {
   const [currentView, setCurrentView] = useState("list"); // "list" or "edit"
   const [selectedEvent, setSelectedEvent] = useState(null);
-  
+
   const [events] = useState([
     {
       id: 1,
@@ -55,7 +55,8 @@ const AllEventList = ({ onBack }) => {
     {
       id: 6,
       title: "VOD DUBAI INTERNATIONAL JEWELLERY SHOW 2018, UAE",
-      venue: "DUBAI WORL TRADE CENTRE, SHAIKH SAEED HALL, INDIA PAVILLION, BOOTH NO J126",
+      venue:
+        "DUBAI WORL TRADE CENTRE, SHAIKH SAEED HALL, INDIA PAVILLION, BOOTH NO J126",
       status: "Active",
       description: "International Jewelry Exhibition in Dubai",
       startTime: "2024-04-15T09:00",
@@ -64,7 +65,8 @@ const AllEventList = ({ onBack }) => {
     {
       id: 7,
       title: "JEWELLERY ARABIA 2018, BAHRAIN",
-      venue: "BAHRAIN INTERNATIONAL EXHIBITION & CONVENTION CENTRE, INDIA PAVILION, HALL NO. 2, BOOTH NO. 1197",
+      venue:
+        "BAHRAIN INTERNATIONAL EXHIBITION & CONVENTION CENTRE, INDIA PAVILION, HALL NO. 2, BOOTH NO. 1197",
       status: "Active",
       description: "International Jewelry Exhibition in Bahrain 2018",
       startTime: "2024-04-20T10:00",
@@ -73,7 +75,7 @@ const AllEventList = ({ onBack }) => {
   ]);
 
   const handleEdit = (id) => {
-    const eventToEdit = events.find(event => event.id === id);
+    const eventToEdit = events.find((event) => event.id === id);
     setSelectedEvent(eventToEdit);
     setCurrentView("edit");
   };
@@ -101,7 +103,7 @@ const AllEventList = ({ onBack }) => {
   // If we're in edit mode, show the EditEvent component
   if (currentView === "edit") {
     return (
-      <EditEvent 
+      <EditEvent
         onBack={handleBackToList}
         eventId={selectedEvent?.id}
         eventData={selectedEvent}
@@ -112,12 +114,9 @@ const AllEventList = ({ onBack }) => {
   // Default list view
   return (
     <div className="flex flex-col h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
-
-
       {/* Main Content */}
       <div className="flex-1 p-6 overflow-y-auto">
         <div className="max-w-7xl mx-auto">
-
           {/* Content Card */}
           <div className="bg-white rounded-xl shadow-lg border border-gray-200/50 overflow-hidden">
             {/* Table Header */}
@@ -134,27 +133,40 @@ const AllEventList = ({ onBack }) => {
             {/* Table Body */}
             <div className="divide-y divide-gray-200">
               {events.map((event, index) => (
-                <div key={event?.id} className="px-6 py-4 hover:bg-gray-50 transition-colors">
+                <div
+                  key={event?.id}
+                  className="px-6 py-4 hover:bg-gray-50 transition-colors"
+                >
                   <div className="grid grid-cols-12 gap-4 items-center">
                     {/* Serial Number */}
                     <div className="col-span-1 text-center">
-                      <span className="text-sm font-medium text-gray-900">{event?.id}</span>
+                      <span className="text-sm font-medium text-gray-900">
+                        {event?.id}
+                      </span>
                     </div>
 
                     {/* Event Title */}
                     <div className="col-span-4">
                       <div className="max-w-xs">
-                        <p className="text-sm font-medium text-gray-900 truncate" title={event?.title}>
+                        <p
+                          className="text-sm font-medium text-gray-900 truncate"
+                          title={event?.title}
+                        >
                           {event?.title}
                         </p>
-                        <p className="text-xs text-gray-500">Event #{event?.id}</p>
+                        <p className="text-xs text-gray-500">
+                          Event #{event?.id}
+                        </p>
                       </div>
                     </div>
 
                     {/* Venue */}
                     <div className="col-span-3">
                       <div className="max-w-xs">
-                        <p className="text-sm text-gray-900 truncate" title={event?.venue}>
+                        <p
+                          className="text-sm text-gray-900 truncate"
+                          title={event?.venue}
+                        >
                           {event?.venue}
                         </p>
                       </div>

@@ -303,7 +303,7 @@ const CurrencyConverter = ({ onBack }) => {
                       <span className="font-bold text-slate-800">
                         {rates[currency?.code]?.toFixed(
                           currency.step === "0.01" ? 2 : 3
-                        )} 
+                        )}
                         {currency?.code}
                       </span>
                     </div>

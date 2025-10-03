@@ -220,6 +220,7 @@ const AdminDashboard = () => {
     });
     setActiveTab("dashboard");
   };
+  console.log(currentPage,"currentPage")
   const renderMainContent = () => {
     // If we're on a subpage, render the appropriate component
     if (currentPage.type === "subpage") {

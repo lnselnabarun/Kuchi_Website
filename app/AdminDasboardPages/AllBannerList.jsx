@@ -5,7 +5,7 @@ import EditBanner from "./EditBanner";
 const AllBannerList = ({ onBack }) => {
   const [currentView, setCurrentView] = useState("list"); // "list" or "edit"
   const [selectedBanner, setSelectedBanner] = useState(null);
-  
+
   const [banners] = useState([
     {
       id: 1,
@@ -58,7 +58,7 @@ const AllBannerList = ({ onBack }) => {
   ]);
 
   const handleEdit = (id) => {
-    const bannerToEdit = banners.find(banner => banner.id === id);
+    const bannerToEdit = banners.find((banner) => banner.id === id);
     setSelectedBanner(bannerToEdit);
     setCurrentView("edit");
   };
@@ -87,7 +87,7 @@ const AllBannerList = ({ onBack }) => {
   // If we're in edit mode, show the EditBanner component
   if (currentView === "edit") {
     return (
-      <EditBanner 
+      <EditBanner
         onBack={handleBackToList}
         bannerId={selectedBanner?.id}
         bannerData={selectedBanner}
@@ -100,7 +100,6 @@ const AllBannerList = ({ onBack }) => {
     <div className="flex flex-col h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
       <div className="flex-1 p-6 overflow-y-auto">
         <div className="max-w-7xl mx-auto">
-
           {/* Content Card */}
           <div className="bg-white rounded-xl shadow-lg border border-gray-200/50 overflow-hidden">
             {/* Table Header */}
@@ -116,11 +115,16 @@ const AllBannerList = ({ onBack }) => {
             {/* Table Body */}
             <div className="divide-y divide-gray-200">
               {banners.map((banner, index) => (
-                <div key={banner?.id} className="px-6 py-4 hover:bg-gray-50 transition-colors">
+                <div
+                  key={banner?.id}
+                  className="px-6 py-4 hover:bg-gray-50 transition-colors"
+                >
                   <div className="grid grid-cols-12 gap-4 items-center">
                     {/* Serial Number */}
                     <div className="col-span-1 text-center">
-                      <span className="text-sm font-medium text-gray-900">{banner?.id}</span>
+                      <span className="text-sm font-medium text-gray-900">
+                        {banner?.id}
+                      </span>
                     </div>
 
                     {/* Banner Info */}
@@ -142,8 +146,12 @@ const AllBannerList = ({ onBack }) => {
                           />
                         </div>
                         <div>
-                          <p className="text-sm font-medium text-gray-900">{banner?.title}</p>
-                          <p className="text-xs text-gray-500">Banner #{banner?.id}</p>
+                          <p className="text-sm font-medium text-gray-900">
+                            {banner?.title}
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            Banner #{banner?.id}
+                          </p>
                         </div>
                       </div>
                     </div>

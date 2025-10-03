@@ -5,7 +5,7 @@ import EditUser from "./EditUser";
 const AllUserList = ({ onBack }) => {
   const [currentView, setCurrentView] = useState("list"); // "list" or "edit"
   const [selectedUser, setSelectedUser] = useState(null);
-  
+
   const [users] = useState([
     {
       id: 1,
@@ -14,7 +14,7 @@ const AllUserList = ({ onBack }) => {
       status: "Active",
       password: "password123",
       otherDetails: "Administrator user with full permissions",
-      userGroup: "Admin"
+      userGroup: "Admin",
     },
     {
       id: 2,
@@ -23,7 +23,7 @@ const AllUserList = ({ onBack }) => {
       status: "Active",
       password: "password123",
       otherDetails: "Manager user with limited permissions",
-      userGroup: "Manager"
+      userGroup: "Manager",
     },
     {
       id: 3,
@@ -32,7 +32,7 @@ const AllUserList = ({ onBack }) => {
       status: "Active",
       password: "password123",
       otherDetails: "Regular user account",
-      userGroup: "User"
+      userGroup: "User",
     },
     {
       id: 4,
@@ -41,7 +41,7 @@ const AllUserList = ({ onBack }) => {
       status: "Active",
       password: "password123",
       otherDetails: "Secondary account for Lalit",
-      userGroup: "User"
+      userGroup: "User",
     },
     {
       id: 5,
@@ -50,7 +50,7 @@ const AllUserList = ({ onBack }) => {
       status: "Active",
       password: "password123",
       otherDetails: "Technical support user",
-      userGroup: "Support"
+      userGroup: "Support",
     },
     {
       id: 6,
@@ -59,12 +59,12 @@ const AllUserList = ({ onBack }) => {
       status: "Active",
       password: "password123",
       otherDetails: "Sales representative account",
-      userGroup: "Sales"
-    }
+      userGroup: "Sales",
+    },
   ]);
 
   const handleEdit = (id) => {
-    const userToEdit = users.find(user => user?.id === id);
+    const userToEdit = users.find((user) => user?.id === id);
     setSelectedUser(userToEdit);
     setCurrentView("edit");
   };
@@ -92,7 +92,7 @@ const AllUserList = ({ onBack }) => {
   // If we're in edit mode, show the EditUser component
   if (currentView === "edit") {
     return (
-      <EditUser 
+      <EditUser
         onBack={handleBackToList}
         userId={selectedUser?.id}
         userData={selectedUser}
@@ -103,11 +103,9 @@ const AllUserList = ({ onBack }) => {
   // Default list view
   return (
     <div className="flex flex-col h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
-
       {/* Main Content */}
       <div className="flex-1 p-6 overflow-y-auto">
         <div className="max-w-7xl mx-auto">
-
           {/* Content Card */}
           <div className="bg-white rounded-xl shadow-lg border border-gray-200/50 overflow-hidden">
             {/* Table Header */}
@@ -124,27 +122,40 @@ const AllUserList = ({ onBack }) => {
             {/* Table Body */}
             <div className="divide-y divide-gray-200">
               {users.map((user, index) => (
-                <div key={user?.id} className="px-6 py-4 hover:bg-gray-50 transition-colors">
+                <div
+                  key={user?.id}
+                  className="px-6 py-4 hover:bg-gray-50 transition-colors"
+                >
                   <div className="grid grid-cols-12 gap-4 items-center">
                     {/* Serial Number */}
                     <div className="col-span-1 text-center">
-                      <span className="text-sm font-medium text-gray-900">{user?.id}</span>
+                      <span className="text-sm font-medium text-gray-900">
+                        {user?.id}
+                      </span>
                     </div>
 
                     {/* Username */}
                     <div className="col-span-3">
                       <div className="max-w-xs">
-                        <p className="text-sm font-medium text-gray-900 truncate" title={user?.username}>
+                        <p
+                          className="text-sm font-medium text-gray-900 truncate"
+                          title={user?.username}
+                        >
                           {user?.username}
                         </p>
-                        <p className="text-xs text-gray-500">User #{user?.id}</p>
+                        <p className="text-xs text-gray-500">
+                          User #{user?.id}
+                        </p>
                       </div>
                     </div>
 
                     {/* Email */}
                     <div className="col-span-4">
                       <div className="max-w-xs">
-                        <p className="text-sm text-gray-900 truncate" title={user?.email}>
+                        <p
+                          className="text-sm text-gray-900 truncate"
+                          title={user?.email}
+                        >
                           {user?.email}
                         </p>
                       </div>
