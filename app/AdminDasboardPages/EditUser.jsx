@@ -33,13 +33,13 @@ const EditUser = ({ onBack, userId, userData }) => {
   };
 
   const handleUpdateUser = () => {
-    console.log("Updating user:", userId, formData);
+    // console.log("Updating user:", userId, formData);
     // Handle update user logic here
     // onBack();
   };
 
   const handleAddNewUser = () => {
-    console.log("Adding new user with data:", formData);
+    // console.log("Adding new user with data:", formData);
     // Handle add new user logic here
   };
 

@@ -19,7 +19,7 @@ const AddNewUser = ({ onBack }) => {
   };
 
   const handleSubmit = () => {
-    console.log("User data:", userData);
+    // console.log("User data:", userData);
     // Handle form submission logic here
   };
 

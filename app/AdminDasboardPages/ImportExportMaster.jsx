@@ -29,7 +29,7 @@ const ImportExportMaster = ({ onBack }) => {
   };
 
   const handleAddItem = () => {
-    console.log("Adding item:", { file: uploadedFile, master: selectedMaster });
+    // console.log("Adding item:", { file: uploadedFile, master: selectedMaster });
     // Simulate processing
     setShowResults(true);
     setResultData(["Processing completed successfully"]);
@@ -42,7 +42,7 @@ const ImportExportMaster = ({ onBack }) => {
 
   const toggleValueVisibility = (index) => {
     // Toggle visibility logic here
-    console.log("Toggling visibility for:", index);
+    // console.log("Toggling visibility for:", index);
   };
 
   return (

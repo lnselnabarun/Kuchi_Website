@@ -131,11 +131,11 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
   };
 
   const handleUpdateItem = () => {
-    console.log("Updating assignment:", { formData, selectedProducts });
+    // console.log("Updating assignment:", { formData, selectedProducts });
   };
 
   const handleAssignUsers = () => {
-    console.log("Assigning users:", { formData, selectedProducts });
+    // console.log("Assigning users:", { formData, selectedProducts });
   };
 
   const handleProductToggle = (productId) => {

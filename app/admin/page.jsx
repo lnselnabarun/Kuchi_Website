@@ -143,15 +143,13 @@ const AdminDashboard = () => {
         component: null,
       });
     }
-    
+
     // Close mobile menu after selection
     setIsMobileMenuOpen(false);
   };
 
   // Handle sub-item selection from modal
   const handleSubItemClick = (mainItemId, subItemLabel) => {
-    console.log(`Selected: ${mainItemId} -> ${subItemLabel}`);
-
     // Close modal
     setShowModal(false);
 
@@ -205,10 +203,9 @@ const AdminDashboard = () => {
         "Edit Banner": "EditBanner",
       },
     };
-  
+
     return componentMap[mainItemId]?.[subItemLabel] || null;
   };
-  
 
   // Handle back navigation
   const handleBackToMain = () => {
@@ -220,7 +217,6 @@ const AdminDashboard = () => {
     });
     setActiveTab("dashboard");
   };
-  console.log(currentPage,"currentPage")
   const renderMainContent = () => {
     // If we're on a subpage, render the appropriate component
     if (currentPage.type === "subpage") {
@@ -262,10 +258,10 @@ const AdminDashboard = () => {
         case "ImportExportProduct":
           return <ImportExportProduct onBack={handleBackToMain} />;
         // default:
-        //   return <DashboardStatus />;
+        //   return <DashboardStatus />
       }
     }
-  
+
     // Main dashboard content - THIS IS THE FIXED PART
     switch (activeTab) {
       case "dashboard":
@@ -353,7 +349,9 @@ const AdminDashboard = () => {
             <div className="flex items-center flex-shrink-0">
               <div className="flex-shrink-0 flex items-center">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg">
-                  <span className="text-white font-bold text-lg sm:text-xl">K</span>
+                  <span className="text-white font-bold text-lg sm:text-xl">
+                    K
+                  </span>
                 </div>
                 <div className="ml-3 sm:ml-4 hidden sm:block">
                   <h1 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
@@ -434,7 +432,11 @@ const AdminDashboard = () => {
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="xl:hidden p-2 sm:p-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100/60 rounded-xl transition-all duration-200"
               >
-                {isMobileMenuOpen ? <X size={18} className="sm:w-5 sm:h-5" /> : <Menu size={18} className="sm:w-5 sm:h-5" />}
+                {isMobileMenuOpen ? (
+                  <X size={18} className="sm:w-5 sm:h-5" />
+                ) : (
+                  <Menu size={18} className="sm:w-5 sm:h-5" />
+                )}
               </button>
             </div>
           </div>
@@ -522,7 +524,6 @@ const AdminDashboard = () => {
                           modalType === "profile" &&
                           option?.label === "Sign out"
                         ) {
-                          console.log("Sign out clicked");
                           setShowModal(false);
                         } else {
                           handleSubItemClick(modalType, option?.label);

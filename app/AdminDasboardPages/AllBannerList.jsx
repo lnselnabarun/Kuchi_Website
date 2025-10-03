@@ -69,17 +69,17 @@ const AllBannerList = ({ onBack }) => {
   };
 
   const handleDelete = (id) => {
-    console.log("Delete banner:", id);
+    // console.log("Delete banner:", id);
     // Add delete logic here
   };
 
   const handleView = (id) => {
-    console.log("View banner:", id);
+    // console.log("View banner:", id);
     // Add view logic here
   };
 
   const handleAddNew = () => {
-    console.log("Add new banner");
+    // console.log("Add new banner");
     // You can handle this by calling a prop function or navigating
     // For now, just logging
   };

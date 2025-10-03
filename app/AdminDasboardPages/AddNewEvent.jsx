@@ -61,7 +61,7 @@ const AddNewEvent = ({ onBack }) => {
   };
 
   const handleSubmit = () => {
-    console.log("Event data:", eventData);
+    // console.log("Event data:", eventData);
     // Handle form submission logic here
   };
 

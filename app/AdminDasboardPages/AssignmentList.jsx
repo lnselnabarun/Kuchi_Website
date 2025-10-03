@@ -131,7 +131,7 @@ const AssignmentList = ({ onBack }) => {
   };
 
   const confirmDelete = () => {
-    console.log("Deleting assignment:", deletingAssignmentId);
+    // console.log("Deleting assignment:", deletingAssignmentId);
     // Add your actual delete logic here
     setShowDeleteModal(false);
     setDeletingAssignmentId(null);

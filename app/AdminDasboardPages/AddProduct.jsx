@@ -1483,7 +1483,7 @@ const AddProduct = ({ onBack }) => {
               </button>
               <button
                 onClick={() => {
-                  console.log("Form Data:", formData);
+                  // console.log("Form Data:", formData);
                   // Handle form submission here
                   alert("Product saved successfully! (This is a demo)");
                 }}

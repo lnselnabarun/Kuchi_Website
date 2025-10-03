@@ -34,7 +34,7 @@ const AddNewBanner = ({ onBack }) => {
       alert("Please fill in all required fields");
       return;
     }
-    console.log("Banner data:", bannerData);
+    // console.log("Banner data:", bannerData);
     // Handle form submission logic here
     alert("Banner added successfully!");
   };

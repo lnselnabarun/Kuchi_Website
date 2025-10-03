@@ -42,7 +42,7 @@ const CurrencyConverter = ({ onBack }) => {
     handleButtonClick("update-online", () => {
       setIsUpdating(true);
       setTimeout(() => {
-        console.log("Updating rates from online...");
+        // console.log("Updating rates from online...");
         setLastUpdated(new Date().toLocaleString());
         setIsUpdating(false);
       }, 2000);
@@ -51,7 +51,7 @@ const CurrencyConverter = ({ onBack }) => {
 
   const updateItem = () => {
     handleButtonClick("update-item", () => {
-      console.log("Updating item...");
+      // console.log("Updating item...");
     });
   };
 

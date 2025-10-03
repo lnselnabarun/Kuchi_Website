@@ -44,14 +44,14 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
   };
 
   const handleUpdateBanner = () => {
-    console.log("Updating banner:", bannerId, formData);
+    // console.log("Updating banner:", bannerId, formData);
     // Handle update banner logic here
     // After successful update, you can redirect back to list
     // onBack();
   };
 
   const handleAddNewBanner = () => {
-    console.log("Adding new banner with data:", formData);
+    // console.log("Adding new banner with data:", formData);
     // Handle add new banner logic here
   };
 

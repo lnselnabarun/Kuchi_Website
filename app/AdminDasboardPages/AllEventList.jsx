@@ -86,17 +86,17 @@ const AllEventList = ({ onBack }) => {
   };
 
   const handleDelete = (id) => {
-    console.log("Delete event:", id);
+    // console.log("Delete event:", id);
     // Add delete logic here
   };
 
   const handleView = (id) => {
-    console.log("View event:", id);
+    // console.log("View event:", id);
     // Add view logic here
   };
 
   const handleAddNew = () => {
-    console.log("Add new event");
+    // console.log("Add new event");
     // You can handle this by calling a prop function or navigating
   };
 

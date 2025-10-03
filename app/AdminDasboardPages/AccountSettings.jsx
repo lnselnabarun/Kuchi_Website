@@ -43,7 +43,6 @@ const AccountSettings = ({ onBack }) => {
     handleButtonClick("save", () => {
       setIsLoading(true);
       setTimeout(() => {
-        console.log("Settings updated:", formData);
         setIsLoading(false);
       }, 1500);
     });

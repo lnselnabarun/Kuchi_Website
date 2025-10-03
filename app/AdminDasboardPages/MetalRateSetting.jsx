@@ -45,7 +45,7 @@ const MetalRateSetting = ({ onBack }) => {
   };
 
   const handleUpdateItem = () => {
-    console.log("Updating metal rates:", rates);
+    // console.log("Updating metal rates:", rates);
     // Add your update logic here
     alert("Metal rates updated successfully!");
   };

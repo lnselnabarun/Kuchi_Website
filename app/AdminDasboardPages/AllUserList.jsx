@@ -75,17 +75,17 @@ const AllUserList = ({ onBack }) => {
   };
 
   const handleDelete = (id) => {
-    console.log("Delete user:", id);
+    // console.log("Delete user:", id);
     // Add delete logic here
   };
 
   const handleView = (id) => {
-    console.log("View user:", id);
+    // console.log("View user:", id);
     // Add view logic here
   };
 
   const handleAddNew = () => {
-    console.log("Add new user");
+    // console.log("Add new user");
     // You can handle this by calling a prop function or navigating
   };
 
@@ -143,9 +143,9 @@ const AllUserList = ({ onBack }) => {
                         >
                           {user?.username}
                         </p>
-                        <p className="text-xs text-gray-500">
+                        {/* <p className="text-xs text-gray-500">
                           User #{user?.id}
-                        </p>
+                        </p> */}
                       </div>
                     </div>
 

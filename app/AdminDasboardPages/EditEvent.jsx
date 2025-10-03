@@ -15,7 +15,7 @@ const EditEvent = ({ onBack, eventId, eventData }) => {
     videos: [],
   });
 
-  console.log(eventData, "eventDataeventData");
+  // console.log(eventData, "eventDataeventData");
 
   // Initialize form with existing event data
   useEffect(() => {
@@ -81,13 +81,13 @@ const EditEvent = ({ onBack, eventId, eventData }) => {
   };
 
   const handleUpdateEvent = () => {
-    console.log("Updating event:", eventId, formData);
+    // console.log("Updating event:", eventId, formData);
     // Handle update event logic here
     // onBack();
   };
 
   const handleAddNewEvent = () => {
-    console.log("Adding new event with data:", formData);
+    // console.log("Adding new event with data:", formData);
     // Handle add new event logic here
   };
 

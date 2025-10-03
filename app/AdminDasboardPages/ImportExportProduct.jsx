@@ -29,10 +29,10 @@ const ImportExportProduct = ({ onBack }) => {
   };
 
   const handleAddItem = () => {
-    console.log("Adding product item:", {
-      file: uploadedFile,
-      product: selectedProduct,
-    });
+    // console.log("Adding product item:", {
+    //   file: uploadedFile,
+    //   product: selectedProduct,
+    // });
     // Simulate processing
     setShowResults(true);
     setResultData([
@@ -48,7 +48,7 @@ const ImportExportProduct = ({ onBack }) => {
 
   const toggleValueVisibility = (index) => {
     // Toggle visibility logic here
-    console.log("Toggling visibility for product:", index);
+    // console.log("Toggling visibility for product:", index);
   };
 
   return (
