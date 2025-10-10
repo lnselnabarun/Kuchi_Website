@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   LayoutDashboard,
   Upload,
@@ -37,12 +37,14 @@ import ImportExportMaster from "../AdminDasboardPages/ImportExportMaster";
 import ImportExportProduct from "../AdminDasboardPages/ImportExportProduct";
 import MetalRateSetting from "../AdminDasboardPages/MetalRateSetting";
 import AddProduct from "../AdminDasboardPages/AddProduct";
+import AdminLoginModal from "../AdminDasboardPages/AdminLoginModal";
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   // Track current page and navigation history
   const [currentPage, setCurrentPage] = useState({
@@ -51,6 +53,12 @@ const AdminDashboard = () => {
     subItem: null,
     component: null,
   });
+
+  useEffect(() => {
+    const token = localStorage.getItem('access_token');
+    const role = localStorage.getItem('User_role');
+    setIsAuthenticated(token && role === 'admin');
+  }, []);
 
   const menuItems = [
     {
@@ -340,6 +348,10 @@ const AdminDashboard = () => {
         return [];
     }
   };
+
+  if (!isAuthenticated) {
+    return <AdminLoginModal onLoginSuccess={() => setIsAuthenticated(true)} />;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">

@@ -323,13 +323,13 @@ const ManageOrder = () => {
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-6 pt-4 border-t border-slate-200/50">
                         <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-6 space-y-1 sm:space-y-0">
                           <div className="text-sm text-slate-600">
-                            SKU:{" "}
+                            SKU:
                             <span className="font-semibold text-slate-800">
                               JWL{1000 + index}
                             </span>
                           </div>
                           <div className="text-sm text-slate-600">
-                            Category:{" "}
+                            Category:
                             <span className="font-semibold text-slate-800">
                               Jewelry
                             </span>
@@ -1128,14 +1128,14 @@ const ManageOrder = () => {
             <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/60 px-8 py-6">
               <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:items-center sm:justify-between">
                 <div className="text-sm text-slate-600 text-center sm:text-left font-medium">
-                  Showing <span className="font-bold text-slate-800">1</span> to{" "}
+                  Showing <span className="font-bold text-slate-800">1</span> to
                   <span className="font-bold text-slate-800">
                     {filteredOrders?.length}
-                  </span>{" "}
-                  of{" "}
+                  </span>
+                  of
                   <span className="font-bold text-slate-800">
                     {filteredOrders?.length}
-                  </span>{" "}
+                  </span>
                   results
                 </div>
                 <div className="flex justify-center space-x-3">

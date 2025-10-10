@@ -305,7 +305,7 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
                             <strong>Size :</strong> {product?.details?.size}
                           </div>
                           <div>
-                            <strong>Category :</strong>{" "}
+                            <strong>Category :</strong>
                             {product?.details?.category}
                           </div>
                           <div>
@@ -315,7 +315,7 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
                             <strong>Weight :</strong> {product?.details?.weight}
                           </div>
                           <div>
-                            <strong>Stk.Ledger :</strong>{" "}
+                            <strong>Stk.Ledger :</strong>
                             {product?.details?.stkLedger}
                           </div>
                         </div>
@@ -360,15 +360,15 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
                             <strong>Charge :</strong> {product?.amount?.charge}
                           </div>
                           <div>
-                            <strong>Calculated Total :</strong>{" "}
+                            <strong>Calculated Total :</strong>
                             {product?.amount?.calculatedTotal}
                           </div>
                           <div>
-                            <strong>Variable Total :</strong>{" "}
+                            <strong>Variable Total :</strong>
                             {product?.amount?.variableTotal} ▼
                           </div>
                           <div>
-                            <strong>Estimated Total :</strong>{" "}
+                            <strong>Estimated Total :</strong>
                             {product?.amount?.estimatedTotal}
                           </div>
                         </div>
@@ -463,7 +463,7 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
                             <strong>Size :</strong> {product?.details?.size}
                           </div>
                           <div>
-                            <strong>Category :</strong>{" "}
+                            <strong>Category :</strong>
                             {product?.details?.category}
                           </div>
                           <div>
@@ -473,7 +473,7 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
                             <strong>Weight :</strong> {product?.details?.weight}
                           </div>
                           <div>
-                            <strong>Stk Ledger :</strong>{" "}
+                            <strong>Stk Ledger :</strong>
                             {product?.details?.stkLedger}
                           </div>
                         </div>
@@ -518,15 +518,15 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
                             <strong>Charge :</strong> {product?.amount?.charge}
                           </div>
                           <div>
-                            <strong>Calculated Total :</strong>{" "}
+                            <strong>Calculated Total :</strong>
                             {product?.amount?.calculatedTotal}
                           </div>
                           <div>
-                            <strong>Variable Total :</strong>{" "}
+                            <strong>Variable Total :</strong>
                             {product?.amount?.variableTotal} ▼
                           </div>
                           <div>
-                            <strong>Estimated Total :</strong>{" "}
+                            <strong>Estimated Total :</strong>
                             {product?.amount?.estimatedTotal}
                           </div>
                         </div>

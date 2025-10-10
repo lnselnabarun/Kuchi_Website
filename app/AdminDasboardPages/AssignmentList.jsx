@@ -253,7 +253,7 @@ const AssignmentList = ({ onBack }) => {
                       {assignmentToDelete?.groupTitle}
                     </h5>
                     <p className="text-white/70 text-sm">
-                      {assignmentToDelete?.products?.length} products •{" "}
+                      {assignmentToDelete?.products?.length} products •
                       {assignmentToDelete?.userList?.length} users
                     </p>
                   </div>
@@ -355,7 +355,7 @@ const AssignmentList = ({ onBack }) => {
                       {assignmentToDelete?.groupTitle}
                     </h5>
                     <p className="text-gray-600 text-sm">
-                      {assignmentToDelete?.products?.length} products •{" "}
+                      {assignmentToDelete?.products?.length} products •
                       {assignmentToDelete?.userList?.length} users
                     </p>
                   </div>
@@ -415,7 +415,7 @@ const AssignmentList = ({ onBack }) => {
                           {assignment?.groupTitle}
                         </h3>
                         <p className="text-blue-100 mt-1">
-                          {assignment?.products.length} products •{" "}
+                          {assignment?.products.length} products •
                           {assignment?.userList.length} users
                         </p>
                       </div>

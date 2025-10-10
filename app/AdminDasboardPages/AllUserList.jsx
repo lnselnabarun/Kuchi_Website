@@ -198,15 +198,6 @@ const AllUserList = ({ onBack }) => {
               ))}
             </div>
           </div>
-
-          {/* Add User Button (Floating Action Button) */}
-          <button
-            onClick={handleAddNew}
-            className="fixed bottom-8 right-8 w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center"
-            title="Add New User"
-          >
-            <Plus size={24} />
-          </button>
         </div>
       </div>
     </div>
