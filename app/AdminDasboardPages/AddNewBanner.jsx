@@ -30,11 +30,11 @@ const AddNewBanner = ({ onBack }) => {
     const file = e.target.files[0];
     if (file) {
       // Validate file type
-      if (!file.type.startsWith('image/')) {
+      if (!file.type.startsWith("image/")) {
         setUploadError("Please select a valid image file");
         return;
       }
-      
+
       // Validate file size (e.g., max 5MB)
       const maxSize = 5 * 1024 * 1024; // 5MB
       if (file.size > maxSize) {
@@ -52,66 +52,57 @@ const AddNewBanner = ({ onBack }) => {
     }
   };
 
-  console.log( bannerData.mainImage," bannerData.mainImage")
-
   const handleSubmit = async () => {
     // Validation
     if (!bannerData.title || !bannerData.priority || !bannerData.mainImage) {
       setUploadError("Please fill in all required fields");
       return;
     }
-  
+
     setIsUploading(true);
     setUploadError(null);
     setUploadSuccess(false);
-  
+
     try {
       // Get token from localStorage
-      const token = localStorage.getItem('access_token');
-      
+      const token = localStorage.getItem("access_token");
+
       // Create FormData object
       const formData = new FormData();
-      formData.append('banner_title', bannerData.title);
-      formData.append('priority', parseInt(bannerData.priority)); // Convert to integer
-      formData.append('device_type', bannerData.for);
-      formData.append('image', bannerData.mainImage);
+      formData.append("banner_title", bannerData.title);
+      formData.append("priority", parseInt(bannerData.priority)); // Convert to integer
+      formData.append("device_type", bannerData.for);
+      formData.append("image", bannerData.mainImage);
 
       // Proper way to log FormData contents
-      console.log("=== FormData being sent ===", formData);
       for (let [key, value] of formData.entries()) {
         if (value instanceof File) {
-          console.log(key, "File:", value.name, "Type:", value.type, "Size:", value.size);
         } else {
-          console.log(key, value);
         }
       }
-      console.log("API Endpoint:", `${baseUrl}/admin/home-banner`);
-      console.log("========================");
-  
+
       // Make API call
       const response = await fetch(`${baseUrl}/admin/home-banner`, {
-        method: 'POST',
+        method: "POST",
         body: formData,
         headers: {
-          'Authorization': `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
-  
+
       const data = await response.json();
-      console.log("API Response:", data);
-      console.log("Response Status:", response.status);
-  
+
       if (!response.ok) {
-        // Log detailed error information
-        console.error("API Error Details:", data);
         const errorMessage = data.message || data.error || JSON.stringify(data);
-        throw new Error(errorMessage || `Upload failed with status ${response.status}`);
+        throw new Error(
+          errorMessage || `Upload failed with status ${response.status}`
+        );
       }
-  
+
       // Success
       setUploadSuccess(true);
       alert("Banner added successfully!");
-      
+
       // Reset form after successful upload
       setBannerData({
         title: "",
@@ -120,21 +111,16 @@ const AddNewBanner = ({ onBack }) => {
         mainImage: null,
         imagePreview: null,
       });
-  
+
       // Clear file input
-      const fileInput = document.getElementById('mainImage');
+      const fileInput = document.getElementById("mainImage");
       if (fileInput) {
-        fileInput.value = '';
+        fileInput.value = "";
       }
-  
-      // Optional: Navigate back or refresh data
-      // if (onBack) {
-      //   setTimeout(() => onBack(), 1500);
-      // }
-  
     } catch (error) {
-      console.error("Error uploading banner:", error);
-      setUploadError(error.message || "Failed to upload banner. Please try again.");
+      setUploadError(
+        error.message || "Failed to upload banner. Please try again."
+      );
     } finally {
       setIsUploading(false);
     }
@@ -157,9 +143,7 @@ const AddNewBanner = ({ onBack }) => {
           {/* Error Message */}
           {uploadError && (
             <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
-              <p className="text-red-800 font-medium">
-                ✕ {uploadError}
-              </p>
+              <p className="text-red-800 font-medium">✕ {uploadError}</p>
             </div>
           )}
 
@@ -260,7 +244,7 @@ const AddNewBanner = ({ onBack }) => {
                     <label
                       htmlFor="mainImage"
                       className={`flex items-center justify-center w-full px-4 py-3 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-colors ${
-                        isUploading ? 'opacity-50 cursor-not-allowed' : ''
+                        isUploading ? "opacity-50 cursor-not-allowed" : ""
                       }`}
                     >
                       <div className="flex items-center space-x-2 text-gray-500">
@@ -306,11 +290,12 @@ const AddNewBanner = ({ onBack }) => {
 
                 {(!bannerData.title ||
                   !bannerData.priority ||
-                  !bannerData.mainImage) && !isUploading && (
-                  <p className="text-sm text-gray-500 text-center">
-                    Please fill in all required fields and select an image
-                  </p>
-                )}
+                  !bannerData.mainImage) &&
+                  !isUploading && (
+                    <p className="text-sm text-gray-500 text-center">
+                      Please fill in all required fields and select an image
+                    </p>
+                  )}
               </div>
 
               {/* Right Column - Image Preview */}

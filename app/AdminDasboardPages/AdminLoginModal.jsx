@@ -23,9 +23,6 @@ const AdminLoginModal = () => {
         email: email,
         password: password,
       });
-
-      // Extract data from response
-      console.log(response.data, "AdminLoginModal response.data");
       const { access_token, user } = response.data;
 
       // Store in localStorage
@@ -34,10 +31,9 @@ const AdminLoginModal = () => {
 
       // Success message
       alert(`Login successful! Welcome ${user.name}`);
-      
+
       // Redirect to main page and refresh
-      window.location.href = '/admin';
-      
+      window.location.href = "/admin";
     } catch (err) {
       // Handle error
       if (err.response) {

@@ -1483,8 +1483,6 @@ const AddProduct = ({ onBack }) => {
               </button>
               <button
                 onClick={() => {
-                  // console.log("Form Data:", formData);
-                  // Handle form submission here
                   alert("Product saved successfully! (This is a demo)");
                 }}
                 className="px-6 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-colors font-medium shadow-md"

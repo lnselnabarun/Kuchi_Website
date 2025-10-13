@@ -14,10 +14,6 @@ const EditEvent = ({ onBack, eventId, eventData }) => {
     showVideoDetails: false,
     videos: [],
   });
-
-  // console.log(eventData, "eventDataeventData");
-
-  // Initialize form with existing event data
   useEffect(() => {
     if (eventData) {
       setFormData({
@@ -80,16 +76,9 @@ const EditEvent = ({ onBack, eventId, eventData }) => {
     }));
   };
 
-  const handleUpdateEvent = () => {
-    // console.log("Updating event:", eventId, formData);
-    // Handle update event logic here
-    // onBack();
-  };
+  const handleUpdateEvent = () => {};
 
-  const handleAddNewEvent = () => {
-    // console.log("Adding new event with data:", formData);
-    // Handle add new event logic here
-  };
+  const handleAddNewEvent = () => {};
 
   return (
     <div className="flex flex-col h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">

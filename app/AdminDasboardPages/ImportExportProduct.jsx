@@ -29,11 +29,6 @@ const ImportExportProduct = ({ onBack }) => {
   };
 
   const handleAddItem = () => {
-    // console.log("Adding product item:", {
-    //   file: uploadedFile,
-    //   product: selectedProduct,
-    // });
-    // Simulate processing
     setShowResults(true);
     setResultData([
       "Product import completed successfully",
@@ -46,30 +41,10 @@ const ImportExportProduct = ({ onBack }) => {
     setShowResults(false);
   };
 
-  const toggleValueVisibility = (index) => {
-    // Toggle visibility logic here
-    // console.log("Toggling visibility for product:", index);
-  };
+  const toggleValueVisibility = (index) => {};
 
   return (
     <div className="flex flex-col h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
-      {/* Header */}
-      {/* <div className="bg-white/80 backdrop-blur-lg shadow-sm border-b border-gray-200/50 px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <button
-              onClick={onBack}
-              className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all duration-200"
-            >
-              <ArrowLeft size={20} />
-              <span>Back to Dashboard</span>
-            </button>
-            <div className="h-6 w-px bg-gray-300"></div>
-            <h1 className="text-2xl font-bold text-gray-900">Import/Export Product</h1>
-          </div>
-        </div>
-      </div> */}
-
       {/* Main Content */}
       <div className="flex-1 p-6 overflow-y-auto">
         <div className="max-w-7xl mx-auto">

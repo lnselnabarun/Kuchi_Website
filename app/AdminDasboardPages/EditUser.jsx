@@ -32,16 +32,9 @@ const EditUser = ({ onBack, userId, userData }) => {
     }));
   };
 
-  const handleUpdateUser = () => {
-    // console.log("Updating user:", userId, formData);
-    // Handle update user logic here
-    // onBack();
-  };
+  const handleUpdateUser = () => {};
 
-  const handleAddNewUser = () => {
-    // console.log("Adding new user with data:", formData);
-    // Handle add new user logic here
-  };
+  const handleAddNewUser = () => {};
 
   return (
     <div className="flex flex-col h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
@@ -115,7 +108,7 @@ const EditUser = ({ onBack, userId, userData }) => {
                 </div>
 
                 {/* Other Details */}
-                <div>
+                {/* <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Other Details
                   </label>
@@ -128,10 +121,10 @@ const EditUser = ({ onBack, userId, userData }) => {
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"
                     placeholder="Enter other details"
                   />
-                </div>
+                </div> */}
 
                 {/* User Group */}
-                <div>
+                {/* <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     User Group
                   </label>
@@ -144,7 +137,7 @@ const EditUser = ({ onBack, userId, userData }) => {
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     placeholder="Enter user group"
                   />
-                </div>
+                </div> */}
 
                 {/* Status */}
                 <div>
@@ -191,12 +184,12 @@ const EditUser = ({ onBack, userId, userData }) => {
                   >
                     Update User
                   </button>
-                  <button
+                  {/* <button
                     onClick={handleAddNewUser}
                     className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
                   >
                     Add New User
-                  </button>
+                  </button> */}
                 </div>
               </div>
 

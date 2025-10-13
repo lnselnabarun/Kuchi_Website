@@ -119,6 +119,7 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
         variableTotal: "127200.00",
         estimatedTotal: "106000.00",
       },
+      
       selected: true,
     },
   ]);
@@ -130,13 +131,9 @@ const EditAssignment = ({ onBack, assignmentId, assignmentData }) => {
     }));
   };
 
-  const handleUpdateItem = () => {
-    // console.log("Updating assignment:", { formData, selectedProducts });
-  };
+  const handleUpdateItem = () => {};
 
-  const handleAssignUsers = () => {
-    // console.log("Assigning users:", { formData, selectedProducts });
-  };
+  const handleAssignUsers = () => {};
 
   const handleProductToggle = (productId) => {
     setSelectedProducts((prev) =>

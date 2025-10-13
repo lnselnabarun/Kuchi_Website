@@ -22,12 +22,10 @@ const AllBannerList = ({ onBack }) => {
       setLoading(true);
       setError(null);
       const response = await axios.get(`${baseUrl}/home-banner`);
-      console.log(response.data, "response.dataresponse.data");
       if (response.data.success) {
         setBanners(response.data.data);
       }
     } catch (err) {
-      console.error("Error fetching banners:", err);
       setError("Failed to load banners. Please try again.");
     } finally {
       setLoading(false);
@@ -50,28 +48,16 @@ const AllBannerList = ({ onBack }) => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this banner?")) {
       try {
-        // Uncomment when delete API is ready
-        // await axios.delete(`${baseUrl}/home-banner/${id}`);
-        // fetchBanners(); // Refresh the list
-        console.log("Delete banner:", id);
       } catch (err) {
-        console.error("Error deleting banner:", err);
         alert("Failed to delete banner");
       }
     }
   };
 
-  const handleView = (id) => {
-    console.log("View banner:", id);
-    // Add view logic here
-  };
+  const handleView = (id) => {};
 
-  const handleAddNew = () => {
-    console.log("Add new banner");
-    // You can handle this by calling a prop function or navigating
-  };
+  const handleAddNew = () => {};
 
-  // If we're in edit mode, show the EditBanner component
   if (currentView === "edit") {
     return (
       <EditBanner

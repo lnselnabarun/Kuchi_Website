@@ -68,11 +68,9 @@ const AddAssignment = ({ onBack }) => {
   };
 
   const handleAddToCollection = () => {
-    // console.log("Adding to collection:", { formData, selectedProducts });
   };
 
   const handleAssignUsers = () => {
-    // console.log("Assigning users:", { formData, selectedProducts }); 
   };
 
   return (

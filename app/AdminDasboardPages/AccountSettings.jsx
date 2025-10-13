@@ -27,9 +27,9 @@ const AccountSettings = ({ onBack }) => {
   const [clickedButton, setClickedButton] = useState("");
 
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
   };
 
@@ -54,36 +54,36 @@ const AccountSettings = ({ onBack }) => {
       label: "Facebook URL",
       icon: Globe,
       placeholder: "https://facebook.com/yourpage",
-      color: "from-blue-600 to-blue-700"
+      color: "from-blue-600 to-blue-700",
     },
     {
-      key: "instagramLink", 
+      key: "instagramLink",
       label: "Instagram URL",
       icon: Globe,
       placeholder: "https://instagram.com/youraccount",
-      color: "from-pink-600 to-purple-700"
+      color: "from-pink-600 to-purple-700",
     },
     {
       key: "twitterLink",
-      label: "Twitter URL", 
+      label: "Twitter URL",
       icon: Globe,
       placeholder: "https://twitter.com/youraccount",
-      color: "from-sky-500 to-blue-600"
+      color: "from-sky-500 to-blue-600",
     },
     {
       key: "pinterestLink",
       label: "Pinterest URL",
       icon: Share2,
       placeholder: "https://pinterest.com/youraccount",
-      color: "from-red-600 to-red-700"
+      color: "from-red-600 to-red-700",
     },
     {
       key: "youtubeLink",
       label: "YouTube URL",
-      icon: Globe, 
+      icon: Globe,
       placeholder: "https://youtube.com/yourchannel",
-      color: "from-red-600 to-red-700"
-    }
+      color: "from-red-600 to-red-700",
+    },
   ];
 
   return (
@@ -96,7 +96,9 @@ const AccountSettings = ({ onBack }) => {
               <button
                 onClick={() => handleButtonClick("back", onBack)}
                 className={`p-3 text-slate-500 hover:text-slate-700 hover:bg-slate-100/80 rounded-xl transition-all duration-300 transform ${
-                  clickedButton === "back" ? "scale-90 bg-slate-100" : "hover:scale-110"
+                  clickedButton === "back"
+                    ? "scale-90 bg-slate-100"
+                    : "hover:scale-110"
                 }`}
               >
                 <ArrowLeft size={22} />
@@ -122,12 +124,16 @@ const AccountSettings = ({ onBack }) => {
                   <Settings size={24} className="text-white" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-slate-800">Site Configuration</h2>
-                  <p className="text-slate-500 text-sm">Basic website settings</p>
+                  <h2 className="text-xl font-bold text-slate-800">
+                    Site Configuration
+                  </h2>
+                  <p className="text-slate-500 text-sm">
+                    Basic website settings
+                  </p>
                 </div>
               </div>
             </div>
-            
+
             <div className="p-8">
               <div className="space-y-6">
                 <div>
@@ -138,7 +144,9 @@ const AccountSettings = ({ onBack }) => {
                   <input
                     type="text"
                     value={formData.siteUrl}
-                    onChange={(e) => handleInputChange('siteUrl', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("siteUrl", e.target.value)
+                    }
                     className="w-full px-4 py-4 bg-slate-50/80 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-slate-500/20 focus:border-slate-500 transition-all duration-300 text-slate-700 font-medium"
                     placeholder="https://yourwebsite.com"
                   />
@@ -151,7 +159,9 @@ const AccountSettings = ({ onBack }) => {
                   </label>
                   <select
                     value={formData.frontendSorting}
-                    onChange={(e) => handleInputChange('frontendSorting', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("frontendSorting", e.target.value)
+                    }
                     className="w-full px-4 py-4 bg-slate-50/80 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-slate-500/20 focus:border-slate-500 transition-all duration-300 text-slate-700 font-medium"
                   >
                     <option value="Random">Random</option>
@@ -170,7 +180,9 @@ const AccountSettings = ({ onBack }) => {
                   <input
                     type="number"
                     value={formData.parcelGrouping}
-                    onChange={(e) => handleInputChange('parcelGrouping', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("parcelGrouping", e.target.value)
+                    }
                     className="w-full px-4 py-4 bg-slate-50/80 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-slate-500/20 focus:border-slate-500 transition-all duration-300 text-slate-700 font-medium"
                     placeholder="Enter number of products"
                   />
@@ -184,7 +196,9 @@ const AccountSettings = ({ onBack }) => {
                   <input
                     type="number"
                     value={formData.sliderSpeed}
-                    onChange={(e) => handleInputChange('sliderSpeed', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("sliderSpeed", e.target.value)
+                    }
                     className="w-full px-4 py-4 bg-slate-50/80 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-slate-500/20 focus:border-slate-500 transition-all duration-300 text-slate-700 font-medium"
                     placeholder="Enter speed in seconds"
                   />
@@ -201,8 +215,12 @@ const AccountSettings = ({ onBack }) => {
                   <Share2 size={24} className="text-white" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-slate-800">Social Media Links</h2>
-                  <p className="text-slate-500 text-sm">Connect your social accounts</p>
+                  <h2 className="text-xl font-bold text-slate-800">
+                    Social Media Links
+                  </h2>
+                  <p className="text-slate-500 text-sm">
+                    Connect your social accounts
+                  </p>
                 </div>
               </div>
             </div>
@@ -214,7 +232,9 @@ const AccountSettings = ({ onBack }) => {
                   return (
                     <div key={field?.key}>
                       <label className="flex items-center space-x-2 text-sm font-semibold text-slate-700 mb-3">
-                        <div className={`p-2 bg-gradient-to-r ${field?.color} rounded-lg shadow-sm`}>
+                        <div
+                          className={`p-2 bg-gradient-to-r ${field?.color} rounded-lg shadow-sm`}
+                        >
                           <Icon size={16} className="text-white" />
                         </div>
                         <span>{field?.label}</span>
@@ -222,7 +242,9 @@ const AccountSettings = ({ onBack }) => {
                       <input
                         type="url"
                         value={formData[field?.key]}
-                        onChange={(e) => handleInputChange(field?.key, e?.target?.value)}
+                        onChange={(e) =>
+                          handleInputChange(field?.key, e?.target?.value)
+                        }
                         className="w-full px-4 py-4 bg-slate-50/80 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all duration-300 text-slate-700 font-medium"
                         placeholder={field?.placeholder}
                       />
@@ -240,21 +262,26 @@ const AccountSettings = ({ onBack }) => {
             onClick={handleUpdateItem}
             disabled={isLoading}
             className={`px-8 py-4 rounded-2xl font-bold transition-all duration-300 flex items-center space-x-3 text-lg transform ${
-              isLoading 
-                ? 'bg-slate-100 text-slate-400 cursor-not-allowed scale-95' 
+              isLoading
+                ? "bg-slate-100 text-slate-400 cursor-not-allowed scale-95"
                 : clickedButton === "save"
-                ? 'bg-gradient-to-r from-emerald-600 to-teal-700 text-white shadow-lg scale-95'
-                : 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white hover:from-emerald-600 hover:to-teal-700 hover:shadow-xl hover:shadow-emerald-500/25 hover:scale-105'
+                ? "bg-gradient-to-r from-emerald-600 to-teal-700 text-white shadow-lg scale-95"
+                : "bg-gradient-to-r from-emerald-500 to-teal-600 text-white hover:from-emerald-600 hover:to-teal-700 hover:shadow-xl hover:shadow-emerald-500/25 hover:scale-105"
             } shadow-lg`}
           >
-            <div className={`p-2 rounded-lg transition-all duration-300 ${
-              isLoading 
-                ? 'bg-slate-200' 
-                : 'bg-white/20'
-            }`}>
-              <Save size={20} className={isLoading ? 'text-slate-400' : 'text-white'} />
+            <div
+              className={`p-2 rounded-lg transition-all duration-300 ${
+                isLoading ? "bg-slate-200" : "bg-white/20"
+              }`}
+            >
+              <Save
+                size={20}
+                className={isLoading ? "text-slate-400" : "text-white"}
+              />
             </div>
-            <span>{isLoading ? 'Updating Settings...' : 'Save All Changes'}</span>
+            <span>
+              {isLoading ? "Updating Settings..." : "Save All Changes"}
+            </span>
             {isLoading && (
               <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
             )}

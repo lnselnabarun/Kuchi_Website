@@ -18,10 +18,7 @@ const AddNewUser = ({ onBack }) => {
     }));
   };
 
-  const handleSubmit = () => {
-    // console.log("User data:", userData);
-    // Handle form submission logic here
-  };
+  const handleSubmit = () => {};
 
   return (
     <div className="flex flex-col h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
@@ -82,7 +79,7 @@ const AddNewUser = ({ onBack }) => {
                 </div>
 
                 {/* Other Details */}
-                <div>
+                {/* <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Other Details
                   </label>
@@ -95,10 +92,10 @@ const AddNewUser = ({ onBack }) => {
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"
                     placeholder="Enter other details"
                   />
-                </div>
+                </div> */}
 
                 {/* User Group */}
-                <div>
+                {/* <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     User Group
                   </label>
@@ -111,7 +108,7 @@ const AddNewUser = ({ onBack }) => {
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     placeholder="Enter user group"
                   />
-                </div>
+                </div> */}
 
                 {/* Status */}
                 <div>

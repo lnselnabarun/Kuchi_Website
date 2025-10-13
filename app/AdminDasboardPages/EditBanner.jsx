@@ -19,7 +19,7 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
 
   // Get authorization token
   const getAuthToken = () => {
-    return localStorage.getItem('access_token');
+    return localStorage.getItem("access_token");
   };
 
   // Create axios config with authorization header
@@ -27,7 +27,7 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
     const token = getAuthToken();
     return {
       headers: {
-        'Authorization': `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     };
   };
@@ -43,10 +43,10 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
     try {
       setLoading(true);
       setError(null);
-      
+
       const config = getAxiosConfig();
       const response = await axios.get(`${baseUrl}/home-banner/${id}`, config);
-      
+
       if (response.data.success) {
         const banner = response.data.data;
         setFormData({
@@ -59,7 +59,6 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
         });
       }
     } catch (err) {
-      console.error("Error fetching banner details:", err);
       setError("Failed to load banner details. Please try again.");
     } finally {
       setLoading(false);
@@ -90,12 +89,10 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
       setError(null);
 
       const token = getAuthToken();
-      
       const formDataToSend = new FormData();
       formDataToSend.append("banner_title", formData.title);
       formDataToSend.append("priority", parseInt(formData.priority));
       formDataToSend.append("device_type", formData.for.toLowerCase());
-      
       // Only append image if a new one is selected
       if (formData.mainImage) {
         formDataToSend.append("image", formData.mainImage);
@@ -107,20 +104,19 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
-
-      console.log(response, "handleUpdateBanner");
 
       if (response.data.success) {
         alert("Banner updated successfully!");
         onBack(); // Go back to list
       }
     } catch (err) {
-      console.error("Error updating banner:", err);
-      const errorMessage = err.response?.data?.message || "Failed to update banner. Please try again.";
+      const errorMessage =
+        err.response?.data?.message ||
+        "Failed to update banner. Please try again.";
       setError(errorMessage);
       alert(errorMessage);
     } finally {
@@ -153,7 +149,7 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -163,8 +159,9 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
         onBack(); // Go back to list
       }
     } catch (err) {
-      console.error("Error adding banner:", err);
-      const errorMessage = err.response?.data?.message || "Failed to add banner. Please try again.";
+      const errorMessage =
+        err.response?.data?.message ||
+        "Failed to add banner. Please try again.";
       setError(errorMessage);
       alert(errorMessage);
     } finally {
@@ -212,7 +209,7 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
                 <div className="space-y-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Title
+                      Title
                     </label>
                     <input
                       type="text"

@@ -85,20 +85,11 @@ const AllEventList = ({ onBack }) => {
     setSelectedEvent(null);
   };
 
-  const handleDelete = (id) => {
-    // console.log("Delete event:", id);
-    // Add delete logic here
-  };
+  const handleDelete = (id) => {};
 
-  const handleView = (id) => {
-    // console.log("View event:", id);
-    // Add view logic here
-  };
+  const handleView = (id) => {};
 
-  const handleAddNew = () => {
-    // console.log("Add new event");
-    // You can handle this by calling a prop function or navigating
-  };
+  const handleAddNew = () => {};
 
   // If we're in edit mode, show the EditEvent component
   if (currentView === "edit") {

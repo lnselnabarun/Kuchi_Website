@@ -16,6 +16,7 @@ import {
   Menu,
   X,
   ArrowUpRight,
+  LogOut,
 } from "lucide-react";
 import ManageOrder from "../AdminDasboardPages/ManageOrder";
 import DashboardStatus from "../AdminDasboardPages/DashboardStatus";
@@ -45,10 +46,11 @@ const AdminDashboard = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   // Track current page and navigation history
   const [currentPage, setCurrentPage] = useState({
-    type: "main", // 'main' or 'subpage'
+    type: "main",
     mainItem: null,
     subItem: null,
     component: null,
@@ -59,6 +61,45 @@ const AdminDashboard = () => {
     const role = localStorage.getItem('User_role');
     setIsAuthenticated(token && role === 'admin');
   }, []);
+
+  // Logout function
+  const handleLogout = async () => {
+    setIsLoggingOut(true);
+    
+    try {
+      const token = localStorage.getItem('access_token');
+      
+      // Call logout API
+      const response = await fetch('http://192.168.0.182:8000/api/auth/logout', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      localStorage.clear();
+      setShowModal(false);
+      setIsAuthenticated(false);
+      
+      // Reset to default state
+      setActiveTab("dashboard");
+      setCurrentPage({
+        type: "main",
+        mainItem: null,
+        subItem: null,
+        component: null,
+      });
+      
+    } catch (error) {
+      localStorage.clear();
+      setShowModal(false);
+      setIsAuthenticated(false);
+      
+    } finally {
+      setIsLoggingOut(false);
+    }
+  };
 
   const menuItems = [
     {
@@ -126,7 +167,6 @@ const AdminDashboard = () => {
     },
   ];
 
-  // Handle main menu clicks
   const handleMenuClick = (itemId) => {
     const itemsWithModals = [
       "import-export",
@@ -142,7 +182,6 @@ const AdminDashboard = () => {
       setModalType(itemId);
       setShowModal(true);
     } else {
-      // Direct navigation items (no sub-options)
       setActiveTab(itemId);
       setCurrentPage({
         type: "main",
@@ -152,24 +191,17 @@ const AdminDashboard = () => {
       });
     }
 
-    // Close mobile menu after selection
     setIsMobileMenuOpen(false);
   };
 
-  // Handle sub-item selection from modal
   const handleSubItemClick = (mainItemId, subItemLabel) => {
-    // Close modal
     setShowModal(false);
-
-    // Set current page to subpage
     setCurrentPage({
       type: "subpage",
       mainItem: mainItemId,
       subItem: subItemLabel,
       component: getComponentForSubItem(mainItemId, subItemLabel),
     });
-
-    // Update active tab to show main item as active
     setActiveTab(mainItemId);
   };
 
@@ -184,7 +216,7 @@ const AdminDashboard = () => {
         "Add Product": "AddProducts",
         "Product List": "ProductList",
         "Bulk Editing": "BulkEditing",
-        "Metal Rate Setting": "MetalRateSetting", // Add this line
+        "Metal Rate Setting": "MetalRateSetting",
         "Set Variable Price": "SetVariablePrice",
       },
       "import-export": {
@@ -215,7 +247,6 @@ const AdminDashboard = () => {
     return componentMap[mainItemId]?.[subItemLabel] || null;
   };
 
-  // Handle back navigation
   const handleBackToMain = () => {
     setCurrentPage({
       type: "main",
@@ -225,8 +256,8 @@ const AdminDashboard = () => {
     });
     setActiveTab("dashboard");
   };
+
   const renderMainContent = () => {
-    // If we're on a subpage, render the appropriate component
     if (currentPage.type === "subpage") {
       switch (currentPage.component) {
         case "AccountSettings":
@@ -237,7 +268,7 @@ const AdminDashboard = () => {
           return <CropProductImage onBack={handleBackToMain} />;
         case "MetalRateSetting":
           return <MetalRateSetting onBack={handleBackToMain} />;
-        case "AddProducts": // This case works correctly
+        case "AddProducts":
           return <AddProduct onBack={handleBackToMain} />;
         case "AddNewBanner":
           return <AddNewBanner onBack={handleBackToMain} />;
@@ -265,12 +296,9 @@ const AdminDashboard = () => {
           return <ImportExportMaster onBack={handleBackToMain} />;
         case "ImportExportProduct":
           return <ImportExportProduct onBack={handleBackToMain} />;
-        // default:
-        //   return <DashboardStatus />
       }
     }
 
-    // Main dashboard content - THIS IS THE FIXED PART
     switch (activeTab) {
       case "dashboard":
         return <DashboardStatus />;
@@ -283,8 +311,6 @@ const AdminDashboard = () => {
       case "manage-banner":
       case "settings":
       case "import-export":
-        // These tabs use modals, so show dashboard when they're active
-        // but no subpage is selected
         return <DashboardStatus />;
       default:
         return <DashboardStatus />;
@@ -303,7 +329,7 @@ const AdminDashboard = () => {
         return [
           { label: "Account Settings", icon: Settings },
           { label: "Billing", icon: Package },
-          { label: "Sign out", icon: User },
+          { label: "Sign out", icon: LogOut },
         ];
       case "import-export":
         return [
@@ -316,7 +342,7 @@ const AdminDashboard = () => {
           { label: "Product List", icon: FolderOpen },
           { label: "Bulk Editing", icon: Settings },
           { label: "Metal Rate Setting", icon: Calendar },
-          { label: "Set Variable Price", icon: ShoppingCart }, // This was missing
+          { label: "Set Variable Price", icon: ShoppingCart },
         ];
       case "manage-collection":
         return [
@@ -423,8 +449,6 @@ const AdminDashboard = () => {
 
             <div className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
               <button className="relative p-2 sm:p-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100/60 rounded-xl transition-all duration-200 hover:scale-105">
-                {/* <Bell size={18} className="sm:w-5 sm:h-5" />
-                <span className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gradient-to-r from-red-500 to-pink-600 rounded-full animate-pulse"></span> */}
               </button>
 
               <button
@@ -536,21 +560,42 @@ const AdminDashboard = () => {
                           modalType === "profile" &&
                           option?.label === "Sign out"
                         ) {
-                          setShowModal(false);
+                          handleLogout();
                         } else {
                           handleSubItemClick(modalType, option?.label);
                         }
                       }}
-                      className="w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 flex items-center space-x-3 text-gray-600 hover:text-gray-900 hover:bg-gray-50 group"
+                      disabled={isLoggingOut && option?.label === "Sign out"}
+                      className={`w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 flex items-center space-x-3 ${
+                        option?.label === "Sign out"
+                          ? "text-red-600 hover:text-red-700 hover:bg-red-50"
+                          : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                      } group ${
+                        isLoggingOut && option?.label === "Sign out"
+                          ? "opacity-50 cursor-not-allowed"
+                          : ""
+                      }`}
                     >
-                      <div className="p-2 rounded-lg bg-gray-100 group-hover:bg-gray-200 transition-colors">
+                      <div
+                        className={`p-2 rounded-lg ${
+                          option?.label === "Sign out"
+                            ? "bg-red-100 group-hover:bg-red-200"
+                            : "bg-gray-100 group-hover:bg-gray-200"
+                        } transition-colors`}
+                      >
                         <Icon size={16} />
                       </div>
-                      <span>{option?.label}</span>
-                      <ArrowUpRight
-                        size={14}
-                        className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity"
-                      />
+                      <span>
+                        {isLoggingOut && option?.label === "Sign out"
+                          ? "Logging out..."
+                          : option?.label}
+                      </span>
+                      {option?.label !== "Sign out" && (
+                        <ArrowUpRight
+                          size={14}
+                          className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity"
+                        />
+                      )}
                     </button>
                   );
                 })}

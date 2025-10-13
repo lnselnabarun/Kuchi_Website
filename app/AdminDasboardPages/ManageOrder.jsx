@@ -148,9 +148,7 @@ const ManageOrder = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-slate-100 p-4 sm:p-6 lg:p-8">
       {editingOrder ? (
-        // Edit Order View
         <div className="max-w-7xl mx-auto space-y-6">
-          {/* Header Section */}
           <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/60 overflow-hidden">
             <div className="px-8 py-6 border-b border-gray-200/60 bg-gradient-to-r from-slate-50 to-gray-50">
               <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:items-center sm:justify-between">
@@ -221,7 +219,6 @@ const ManageOrder = () => {
                     className="group bg-gradient-to-r from-white to-slate-50/50 rounded-2xl border border-slate-200/60 hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
                   >
                     <div className="p-6">
-                      {/* Item Header */}
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center space-x-4">
                           <div className="w-12 h-12 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-2xl flex items-center justify-center shadow-sm">
@@ -283,26 +280,12 @@ const ManageOrder = () => {
                             Quantity
                           </label>
                           <div className="flex items-center space-x-2">
-                            {/* <button 
-                              onClick={() => handleButtonClick(`minus-${index}`)}
-                              className={`p-2 bg-slate-100 rounded-xl hover:bg-slate-200 transition-all duration-200 transform ${
-                                clickedButton === `minus-${index}` ? "scale-90" : "hover:scale-110"
-                              }`}>
-                              <Minus size={16} />
-                            </button> */}
                             <input
                               type="number"
                               defaultValue={item?.quantity}
                               className="flex-1 px-4 py-3 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 bg-white text-center font-medium"
                               min="1"
                             />
-                            {/* <button 
-                              onClick={() => handleButtonClick(`plus-${index}`)}
-                              className={`p-2 bg-slate-100 rounded-xl hover:bg-slate-200 transition-all duration-200 transform ${
-                                clickedButton === `plus-${index}` ? "scale-90" : "hover:scale-110"
-                              }`}>
-                              <Plus size={16} />
-                            </button> */}
                           </div>
                         </div>
 

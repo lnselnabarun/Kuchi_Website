@@ -60,10 +60,7 @@ const AddNewEvent = ({ onBack }) => {
     }));
   };
 
-  const handleSubmit = () => {
-    // console.log("Event data:", eventData);
-    // Handle form submission logic here
-  };
+  const handleSubmit = () => {};
 
   return (
     <div className="flex flex-col h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
