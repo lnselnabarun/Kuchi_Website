@@ -20,7 +20,7 @@ const AllUserList = ({ onBack }) => {
 
     try {
       // Get token from localStorage
-      const token = localStorage.getItem("access_token"); // Adjust key name as needed
+      const token = localStorage.getItem("access_token");
 
       if (!token) {
         throw new Error("Authentication token not found. Please login again.");
