@@ -9,7 +9,6 @@ const AllUserList = ({ onBack }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch sales persons from API
   useEffect(() => {
     fetchSalesPersons();
   }, []);
