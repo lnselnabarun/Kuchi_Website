@@ -17,12 +17,10 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Get authorization token
   const getAuthToken = () => {
     return localStorage.getItem("access_token");
   };
 
-  // Create axios config with authorization header
   const getAxiosConfig = () => {
     const token = getAuthToken();
     return {
@@ -32,7 +30,6 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
     };
   };
 
-  // Fetch banner details by ID
   useEffect(() => {
     if (bannerId) {
       fetchBannerDetails(bannerId);
@@ -55,7 +52,7 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
           for: banner.device_type === "desktop" ? "desktop" : "mobile",
           mainImage: null,
           currentImageUrl: banner.image_url || null,
-          status: "Active", // You can add status field in API if needed
+          status: "Active",
         });
       }
     } catch (err) {
@@ -93,7 +90,6 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
       formDataToSend.append("banner_title", formData.title);
       formDataToSend.append("priority", parseInt(formData.priority));
       formDataToSend.append("device_type", formData.for.toLowerCase());
-      // Only append image if a new one is selected
       if (formData.mainImage) {
         formDataToSend.append("image", formData.mainImage);
       }
@@ -111,7 +107,7 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
 
       if (response.data.success) {
         alert("Banner updated successfully!");
-        onBack(); // Go back to list
+        onBack();
       }
     } catch (err) {
       const errorMessage =
@@ -124,50 +120,50 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
     }
   };
 
-  const handleAddNewBanner = async () => {
-    try {
-      setLoading(true);
-      setError(null);
+  // const handleAddNewBanner = async () => {
+  //   try {
+  //     setLoading(true);
+  //     setError(null);
 
-      if (!formData.mainImage) {
-        alert("Please select an image");
-        setLoading(false);
-        return;
-      }
+  //     if (!formData.mainImage) {
+  //       alert("Please select an image");
+  //       setLoading(false);
+  //       return;
+  //     }
 
-      const token = getAuthToken();
+  //     const token = getAuthToken();
 
-      const formDataToSend = new FormData();
-      formDataToSend.append("banner_title", formData.title);
-      formDataToSend.append("priority", parseInt(formData.priority));
-      formDataToSend.append("device_type", formData.for.toLowerCase());
-      formDataToSend.append("image", formData.mainImage);
+  //     const formDataToSend = new FormData();
+  //     formDataToSend.append("banner_title", formData.title);
+  //     formDataToSend.append("priority", parseInt(formData.priority));
+  //     formDataToSend.append("device_type", formData.for.toLowerCase());
+  //     formDataToSend.append("image", formData.mainImage);
 
-      const response = await axios.post(
-        `${baseUrl}/admin/home-banner`,
-        formDataToSend,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+  //     const response = await axios.post(
+  //       `${baseUrl}/admin/home-banner`,
+  //       formDataToSend,
+  //       {
+  //         headers: {
+  //           "Content-Type": "multipart/form-data",
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       }
+  //     );
 
-      if (response.data.success) {
-        alert("Banner added successfully!");
-        onBack(); // Go back to list
-      }
-    } catch (err) {
-      const errorMessage =
-        err.response?.data?.message ||
-        "Failed to add banner. Please try again.";
-      setError(errorMessage);
-      alert(errorMessage);
-    } finally {
-      setLoading(false);
-    }
-  };
+  //     if (response.data.success) {
+  //       alert("Banner added successfully!");
+  //       onBack(); // Go back to list
+  //     }
+  //   } catch (err) {
+  //     const errorMessage =
+  //       err.response?.data?.message ||
+  //       "Failed to add banner. Please try again.";
+  //     setError(errorMessage);
+  //     alert(errorMessage);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   return (
     <div className="flex flex-col h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
@@ -326,13 +322,6 @@ const EditBanner = ({ onBack, bannerId, bannerData }) => {
                         {loading ? "Updating..." : "Update Banner"}
                       </button>
                     )}
-                    <button
-                      onClick={handleAddNewBanner}
-                      disabled={loading}
-                      className="flex-1 bg-green-600 hover:bg-green-700 disabled:bg-gray-400 text-white font-medium py-3 px-6 rounded-lg transition-colors"
-                    >
-                      {loading ? "Adding..." : "Add New Banner"}
-                    </button>
                   </div>
                 </div>
 

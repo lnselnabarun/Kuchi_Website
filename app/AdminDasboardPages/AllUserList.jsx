@@ -13,6 +13,8 @@ const AllUserList = ({ onBack }) => {
     fetchSalesPersons();
   }, []);
 
+  console.log(users,"usersusers")
+
   const fetchSalesPersons = async () => {
     setLoading(true);
     setError(null);
@@ -45,14 +47,14 @@ const AllUserList = ({ onBack }) => {
       if (result.success && result.data) {
         // Map API response to component state format
         const mappedUsers = result.data.map((user) => ({
-          id: user.id,
-          username: user.name,
-          email: user.email,
-          status: user.isActive ? "Active" : "Inactive",
-          role: user.role,
-          emailVerified: user.email_verified_at ? true : false,
-          createdAt: user.created_at,
-          updatedAt: user.updated_at,
+          id: user?.id,
+          username: user?.name,
+          email: user?.email,
+          status: user?.isActive ? "Active" : "Inactive",
+          role: user?.role,
+          emailVerified: user?.email_verified_at ? true : false,
+          createdAt: user?.created_at,
+          updatedAt: user?.updated_at,
         }));
 
         setUsers(mappedUsers);
@@ -225,13 +227,13 @@ const AllUserList = ({ onBack }) => {
                             >
                               <Edit size={16} />
                             </button>
-                            <button
+                            {/* <button
                               onClick={() => handleDelete(user?.id)}
                               className="inline-flex items-center justify-center w-10 h-10 bg-red-100 hover:bg-red-200 text-red-600 rounded-lg transition-colors"
                               title="Delete User"
                             >
                               <Trash2 size={16} />
-                            </button>
+                            </button> */}
                           </div>
                         </div>
                       </div>

@@ -41,22 +41,53 @@ const AllBannerList = ({ onBack }) => {
   const handleBackToList = () => {
     setCurrentView("list");
     setSelectedBanner(null);
-    // Refresh the list when coming back
     fetchBanners();
   };
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this banner?")) {
       try {
+        const token = localStorage.getItem('access_token');
+
+        if (!token) {
+          alert("Authentication token not found. Please login again.");
+          return;
+        }
+
+        const response = await fetch(`http://192.168.0.182:8000/api/admin/home-banner/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Accept": "application/json",
+          },
+        });
+
+        if (response.ok) {
+          alert("Banner deleted successfully!");
+        
+          setBanners(prevBanners => prevBanners.filter(banner => banner.id !== id));
+          
+          // Optionally, refresh the entire list to ensure consistency
+          // await fetchBanners();
+        } else {
+          // Handle error responses
+          const errorData = await response.json().catch(() => ({}));
+          
+          if (response.status === 401) {
+            alert("Authentication failed. Please login again.");
+          } else if (response.status === 404) {
+            alert("Banner not found. It may have already been deleted.");
+            // Refresh the list to update the UI
+            await fetchBanners();
+          } else {
+            alert(errorData.message || "Failed to delete banner. Please try again.");
+          }
+        }
       } catch (err) {
-        alert("Failed to delete banner");
+        alert("Failed to delete banner. Please check your connection and try again.");
       }
     }
   };
-
-  const handleView = (id) => {};
-
-  const handleAddNew = () => {};
 
   if (currentView === "edit") {
     return (
@@ -111,7 +142,7 @@ const AllBannerList = ({ onBack }) => {
               <div className="divide-y divide-gray-200">
                 {banners.length === 0 ? (
                   <div className="px-6 py-12 text-center text-gray-500">
-                    No banners found. Click the + button to add a new banner.
+                    No banners found.
                   </div>
                 ) : (
                   banners.map((banner, index) => (

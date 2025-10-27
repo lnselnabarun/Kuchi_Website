@@ -25,25 +25,18 @@ const AdminLoginModal = () => {
       });
       const { access_token, user } = response.data;
 
-      // Store in localStorage
       localStorage.setItem("access_token", access_token);
       localStorage.setItem("User_role", user.role);
 
-      // Success message
       alert(`Login successful! Welcome ${user.name}`);
 
-      // Redirect to main page and refresh
       window.location.href = "/admin";
     } catch (err) {
-      // Handle error
       if (err.response) {
-        // Server responded with error
         setError(err.response.data.message || "Invalid email or password");
       } else if (err.request) {
-        // Request made but no response
         setError("Unable to connect to server. Please try again.");
       } else {
-        // Other errors
         setError("An error occurred. Please try again.");
       }
     } finally {
@@ -130,7 +123,7 @@ const AdminLoginModal = () => {
               )}
 
               {/* Remember Me & Forgot Password */}
-              <div className="flex items-center justify-between text-sm">
+              {/* <div className="flex items-center justify-between text-sm">
                 <label className="flex items-center cursor-pointer group">
                   <input
                     type="checkbox"
@@ -146,7 +139,7 @@ const AdminLoginModal = () => {
                 >
                   Forgot password?
                 </button>
-              </div>
+              </div> */}
 
               {/* Login Button */}
               <button
@@ -167,7 +160,7 @@ const AdminLoginModal = () => {
                 )}
               </button>
             </div>
-          </div>
+          </div> 
 
           {/* Footer */}
           <div className="px-8 py-4 bg-gray-50/50 border-t border-gray-200/50">
