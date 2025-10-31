@@ -79,9 +79,9 @@ const AllUserList = ({ onBack }) => {
     setSelectedUser(null);
   };
 
-  const handleDelete = (id) => {};
+  // const handleDelete = (id) => {};
 
-  const handleAddNew = () => {};
+  // const handleAddNew = () => {};
 
   // If we're in edit mode, show the EditUser component
   if (currentView === "edit") {

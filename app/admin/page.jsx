@@ -17,12 +17,16 @@ import {
   X,
   ArrowUpRight,
   LogOut,
+  FileText,
 } from "lucide-react";
 import ManageOrder from "../AdminDasboardPages/ManageOrder";
 import DashboardStatus from "../AdminDasboardPages/DashboardStatus";
 import AccountSettings from "../AdminDasboardPages/AccountSettings";
 import CurrencyConverter from "../AdminDasboardPages/CurrencyConverter";
 import CropProductImage from "../AdminDasboardPages/CropProductImage";
+import ContentManagement from "../AdminDasboardPages/ContentManagement";
+// import ContentEditor from "../AdminDasboardPages/ContentEditor";
+import ContentEditorNew from '../AdminDasboardPages/ContentEditorNew';
 import AddNewBanner from "../AdminDasboardPages/AddNewBanner";
 import AllBannerList from "../AdminDasboardPages/AllBannerList";
 import EditBanner from "../AdminDasboardPages/EditBanner";
@@ -39,6 +43,7 @@ import ImportExportProduct from "../AdminDasboardPages/ImportExportProduct";
 import MetalRateSetting from "../AdminDasboardPages/MetalRateSetting";
 import AddProduct from "../AdminDasboardPages/AddProduct";
 import AdminLoginModal from "../AdminDasboardPages/AdminLoginModal";
+
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -54,6 +59,7 @@ const AdminDashboard = () => {
     mainItem: null,
     subItem: null,
     component: null,
+    contentType: null, // Added for content editor
   });
 
   useEffect(() => {
@@ -89,6 +95,7 @@ const AdminDashboard = () => {
         mainItem: null,
         subItem: null,
         component: null,
+        contentType: null,
       });
       
     } catch (error) {
@@ -188,6 +195,7 @@ const AdminDashboard = () => {
         mainItem: itemId,
         subItem: null,
         component: null,
+        contentType: null,
       });
     }
 
@@ -201,8 +209,31 @@ const AdminDashboard = () => {
       mainItem: mainItemId,
       subItem: subItemLabel,
       component: getComponentForSubItem(mainItemId, subItemLabel),
+      contentType: null,
     });
     setActiveTab(mainItemId);
+  };
+
+  // Handle navigation from Content Management to Content Editor
+  const handleContentNavigation = (contentType) => {
+    setCurrentPage({
+      type: "content-editor",
+      mainItem: "settings",
+      subItem: "Content Management",
+      component: "ContentEditor",
+      contentType: contentType,
+    });
+  };
+
+  // Handle back navigation from Content Editor to Content Management
+  const handleBackToContentManagement = () => {
+    setCurrentPage({
+      type: "subpage",
+      mainItem: "settings",
+      subItem: "Content Management",
+      component: "ContentManagement",
+      contentType: null,
+    });
   };
 
   const getComponentForSubItem = (mainItemId, subItemLabel) => {
@@ -211,6 +242,7 @@ const AdminDashboard = () => {
         "Account Settings": "AccountSettings",
         "Currency Converter": "CurrencyConverter",
         "Crop Product Image": "CropProductImage",
+        "Content Management": "ContentManagement",
       },
       "manage-product": {
         "Add Product": "AddProducts",
@@ -253,11 +285,22 @@ const AdminDashboard = () => {
       mainItem: null,
       subItem: null,
       component: null,
+      contentType: null,
     });
     setActiveTab("dashboard");
   };
 
   const renderMainContent = () => {
+    // Handle Content Editor page
+    if (currentPage.type === "content-editor") {
+      return (
+        <ContentEditorNew 
+          contentType={currentPage.contentType}
+          onBack={handleBackToContentManagement}
+        />
+      );
+    }
+
     if (currentPage.type === "subpage") {
       switch (currentPage.component) {
         case "AccountSettings":
@@ -266,6 +309,13 @@ const AdminDashboard = () => {
           return <CurrencyConverter onBack={handleBackToMain} />;
         case "CropProductImage":
           return <CropProductImage onBack={handleBackToMain} />;
+        case "ContentManagement":
+          return (
+            <ContentManagement 
+              onBack={handleBackToMain}
+              onNavigate={handleContentNavigation}
+            />
+          );
         case "MetalRateSetting":
           return <MetalRateSetting onBack={handleBackToMain} />;
         case "AddProducts":
@@ -369,6 +419,7 @@ const AdminDashboard = () => {
           { label: "Currency Converter", icon: Settings },
           { label: "Crop Product Image", icon: Image },
           { label: "Account Settings", icon: FolderOpen },
+          { label: "Content Management", icon: FileText },
         ];
       default:
         return [];
